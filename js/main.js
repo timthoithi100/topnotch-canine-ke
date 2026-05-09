@@ -52,8 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
+    }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+    // Double rAF ensures the initial paint has happened before observing,
+    // so in-viewport elements actually get a visible CSS transition.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        revealEls.forEach(el => observer.observe(el));
+      });
+    });
   }
 
   /* ── Counter animation ───────────────────── */
@@ -78,6 +85,34 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { threshold: 0.5 });
     counters.forEach(el => countObserver.observe(el));
+  }
+
+  /* ── Typewriter on hero eyebrow ─────────── */
+  const eyebrow = document.querySelector('.hero-eyebrow');
+  if (eyebrow) {
+    const textNode = [...eyebrow.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+    if (textNode) {
+      const fullText = textNode.textContent.trim();
+      textNode.textContent = '';
+      let i = 0;
+      const cursor = document.createElement('span');
+      cursor.style.cssText = 'display:inline-block;width:2px;height:0.85em;background:var(--red);margin-left:2px;vertical-align:middle;animation:blink 0.8s step-end infinite;';
+      eyebrow.appendChild(cursor);
+      const style = document.createElement('style');
+      style.textContent = '@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}';
+      document.head.appendChild(style);
+      setTimeout(() => {
+        const type = () => {
+          if (i < fullText.length) {
+            textNode.textContent += fullText[i++];
+            setTimeout(type, 38);
+          } else {
+            setTimeout(() => cursor.remove(), 1200);
+          }
+        };
+        type();
+      }, 600);
+    }
   }
 
   /* ── Smooth anchor scroll ────────────────── */

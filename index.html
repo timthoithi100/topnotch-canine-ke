@@ -370,6 +370,57 @@
     .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
     .cta-btn svg { width: 18px; height: 18px; }
 
+    /* ── Hero entrance keyframes ────────────── */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scanDown {
+      0%   { top: -2px; opacity: 0; }
+      5%   { opacity: 1; }
+      95%  { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+    @keyframes btnPulse {
+      0%, 100% { box-shadow: 0 0 12px var(--red-glow); }
+      50%       { box-shadow: 0 0 32px rgba(204,0,0,0.55), 0 0 64px rgba(204,0,0,0.15); }
+    }
+    @keyframes redGlow {
+      0%, 100% { text-shadow: 0 0 0 transparent; }
+      50%       { text-shadow: 0 0 40px rgba(204,0,0,0.6); }
+    }
+
+    /* Hero element staggered entrances */
+    .hero-eyebrow  { animation: heroFadeIn  0.6s ease            0.1s  both; }
+    .hero-title    { animation: heroFadeUp  0.85s var(--ease)    0.25s both; }
+    .hero-tagline  { animation: heroFadeUp  0.7s var(--ease)     0.5s  both; }
+    .hero-desc     { animation: heroFadeUp  0.7s var(--ease)     0.65s both; }
+    .hero-actions  { animation: heroFadeUp  0.7s var(--ease)     0.8s  both; }
+    .hero-trust    { animation: heroFadeUp  0.7s var(--ease)     1.0s  both; }
+    .hero-right    { animation: heroFadeUp  0.8s var(--ease)     0.4s  both; }
+
+    /* Red animated "BEYOND" glow */
+    .hero-title .red { animation: redGlow 3s ease-in-out 1.5s infinite; }
+
+    /* Tactical scan line */
+    .hero-scan-line {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--red) 40%, rgba(204,0,0,0.6) 50%, var(--red) 60%, transparent 100%);
+      animation: scanDown 5s cubic-bezier(0.4,0,0.6,1) 1.2s infinite;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* Primary button ambient glow pulse */
+    .btn-primary { animation: btnPulse 3.5s ease-in-out 1.5s infinite; }
+    .btn-primary:hover { animation: none; }
+
     /* Hero grid layout */
     .hero-grid {
       display: grid;
@@ -509,6 +560,7 @@
   <div class="tac-grid"></div>
   <div class="hero-red-slash" aria-hidden="true"></div>
   <div class="hero-vertical-line" aria-hidden="true"></div>
+  <div class="hero-scan-line" aria-hidden="true"></div>
 
   <div class="container hero-grid">
     <div class="hero-content">
@@ -518,20 +570,20 @@
         Kenya's Premier K9 Solutions Provider
       </div>
 
-      <h1 class="hero-title reveal">
+      <h1 class="hero-title">
         Security<br>
         <span class="red">Beyond</span><br>
         <span class="outline">Human</span><br>
         Capabilities
       </h1>
 
-      <p class="hero-tagline reveal delay-1">Est. 2016 · Kitengela, Kenya · Pan-African Operations</p>
+      <p class="hero-tagline">Est. 2016 · Kitengela, Kenya · Pan-African Operations</p>
 
-      <p class="hero-desc reveal delay-2">
+      <p class="hero-desc">
         Elite K9 teams delivering military-grade patrol, explosives detection, narcotics tracking, and VIP protection across Kenya and East Africa. Certified. Proven. Relentless.
       </p>
 
-      <div class="hero-actions reveal delay-3">
+      <div class="hero-actions">
         <a href="contact.html" class="btn btn-primary">
           Deploy a Team
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -539,7 +591,7 @@
         <a href="services.html" class="btn btn-outline">Our Services</a>
       </div>
 
-      <div class="hero-trust reveal delay-4">
+      <div class="hero-trust">
         <div class="hero-trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           NASDU Certified
