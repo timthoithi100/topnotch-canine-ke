@@ -18,7 +18,8 @@
     .breed-full.reverse > * { direction: ltr; }
 
     .breed-visual {
-      aspect-ratio: 4/5;
+      aspect-ratio: 16/9;
+      max-height: 380px;
       background: var(--bg-card);
       border: 1px solid var(--white-10);
       border-radius: var(--radius-md);
@@ -82,7 +83,7 @@
     @media (max-width: 1024px) {
       .breed-full { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
       .breed-full.reverse { direction: ltr; }
-      .breed-visual { aspect-ratio: 16/9; }
+      .breed-visual { max-height: none; }
     }
     @media (max-width: 768px) {
       .breeds-page { padding: 64px 0; }
