@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Contact Top Notch Canine Capability — Book a K9 security consultation, call +254 721 448 555, or visit us in Kitengela, Kenya. We also have career opportunities."/>
+  <title>Contact & Careers | Top Notch Canine Capability</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .contact-section { padding: 96px 0; background: var(--bg); }
+    .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: start; }
+
+    /* Form */
+    .contact-form-wrap {
+      background: var(--bg-card); border: 1px solid var(--white-10);
+      border-radius: var(--radius-md); padding: 40px; position: relative; overflow: hidden;
+    }
+    .contact-form-wrap::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+    .form-title { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 8px; }
+    .form-sub { font-size: 0.85rem; color: var(--white-40); margin-bottom: 28px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block; font-family: var(--font-heading); font-size: 0.65rem;
+      font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--white-70); margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg-alt);
+      border: 1px solid var(--white-10);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-family: var(--font-body); font-size: 0.9rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--white-40); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px var(--red-subtle);
+    }
+    .form-group select { cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center;
+    }
+    .form-group select option { background: #111; color: white; }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { width: 100%; justify-content: center; font-size: 0.88rem; padding: 14px; }
+    .form-note { font-size: 0.75rem; color: var(--white-40); text-align: center; margin-top: 12px; }
+
+    /* Contact info */
+    .contact-info { position: sticky; top: calc(var(--nav-h) + 24px); }
+    .contact-info h3 { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 28px; }
+    .info-card {
+      background: var(--bg-card); border: 1px solid var(--white-10);
+      border-radius: var(--radius-md); padding: 24px; margin-bottom: 16px;
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: border-color var(--transition);
+    }
+    .info-card:hover { border-color: var(--red-border); }
+    .info-icon { width: 40px; height: 40px; background: var(--red-subtle); border: 1px solid var(--red-border); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .info-icon svg { width: 18px; height: 18px; stroke: var(--red); }
+    .info-label { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+    .info-val { font-size: 0.9rem; color: var(--white); line-height: 1.6; }
+    .info-val a { color: var(--white); transition: color var(--transition); }
+    .info-val a:hover { color: var(--red); }
+
+    .whatsapp-btn {
+      display: flex; align-items: center; gap: 10px;
+      background: #128C7E; color: white;
+      font-family: var(--font-heading); font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 14px 20px; border-radius: var(--radius);
+      margin-top: 4px; transition: background var(--transition), transform var(--transition);
+      width: 100%; justify-content: center; text-decoration: none;
+    }
+    .whatsapp-btn:hover { background: #25D366; transform: translateY(-2px); }
+    .whatsapp-btn svg { width: 18px; height: 18px; }
+
+    /* Careers */
+    #careers { padding: 96px 0; background: var(--bg-alt); }
+    .career-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+    .career-card {
+      background: var(--bg-card); border: 1px solid var(--white-10);
+      border-radius: var(--radius-md); padding: 28px; position: relative;
+      transition: border-color var(--transition), transform var(--transition-slow);
+    }
+    .career-card:hover { border-color: var(--red-border); transform: translateY(-3px); }
+    .career-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .career-title { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); }
+    .career-type { font-family: var(--font-heading); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 10px; border-radius: var(--radius); background: var(--red-subtle); border: 1px solid var(--red-border); color: var(--red); white-space: nowrap; }
+    .career-desc { font-size: 0.85rem; color: var(--white-40); line-height: 1.7; margin-bottom: 20px; }
+    .career-reqs { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-40); margin-bottom: 8px; }
+    .career-req-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+    .career-req-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--white-70); }
+    .career-req-item svg { width: 13px; height: 13px; stroke: var(--red); flex-shrink: 0; }
+    .career-apply {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--red); transition: gap var(--transition); cursor: pointer; text-decoration: none;
+    }
+    .career-apply:hover { gap: 10px; }
+    .career-apply svg { width: 13px; height: 13px; }
+
+    @media (max-width: 1024px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-info { position: static; }
+      .career-cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .contact-section { padding: 64px 0; }
+      #careers { padding: 56px 0 64px; }
+      .career-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .contact-section { padding: 48px 0; }
+      #careers { padding: 48px 0 56px; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 24px; }
+      .contact-info h3 { margin-bottom: 20px; }
+    }
+    @media (max-width: 480px) {
+      .contact-form-wrap { padding: 20px; }
+      .info-card { padding: 18px; gap: 12px; }
+      .whatsapp-btn { padding: 12px 16px; font-size: 0.78rem; }
+      .career-card { padding: 22px; }
+    }
+    @media (max-width: 375px) {
+      .contact-section { padding: 40px 0; }
+      .form-title { font-size: 1.2rem; }
+      .contact-form-wrap { padding: 16px; }
+      .form-group input, .form-group select, .form-group textarea { padding: 10px 12px; font-size: 0.85rem; }
+      .career-title { font-size: 0.92rem; }
+      .career-desc { font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Top Notch Canine Capability — Home">
+      <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect width="44" height="44" rx="3" fill="#0D1B2A"/><polygon points="0,44 44,0 44,44" fill="#CC0000"/><circle cx="32" cy="8" r="4" fill="white"/><rect x="29" y="12" width="6" height="11" rx="1.5" fill="white"/><rect x="28.5" y="22" width="3" height="9" rx="1" fill="white"/><rect x="33" y="22" width="3" height="9" rx="1" fill="white"/><ellipse cx="16" cy="35" rx="11" ry="6" fill="white"/><ellipse cx="25" cy="30" rx="5" ry="4" fill="white"/><rect x="27" y="30" width="4" height="3" rx="1.5" fill="white"/><polygon points="22,26 27,26 24,21" fill="white"/><rect x="9" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="13" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="17" y="40" width="2.5" height="4" rx="1" fill="white"/><line x1="29" y1="18" x2="25" y2="30" stroke="rgba(255,255,255,0.5)" stroke-width="1"/></svg>
+      <div class="logo-text"><span class="top">TOP NOTCH</span><span class="sub">Canine Capability</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="breeds.html">Our Breeds</a></li><li><a href="contact.html" class="active">Contact</a></li><li><a href="#careers">Careers</a></li>
+    </ul>
+    <a href="#contact-form" class="nav-cta">Book Now</a>
+    <button id="hamburger" class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav id="mobile-menu" class="nav-mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="breeds.html">Our Breeds</a><a href="contact.html">Contact</a><a href="#careers">Careers</a><a href="#contact-form" class="nav-cta">Book Now</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="Contact page hero">
+  <div class="hero-slash" aria-hidden="true"></div>
+  <div class="container page-hero-inner">
+    <p class="page-hero-label">Get In Touch</p>
+    <h1>Contact <span>Us</span></h1>
+    <p class="page-hero-desc">Ready to secure your operations? Reach out for a no-obligation consultation. We respond within 24 hours.</p>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section" id="contact-form-section" aria-label="Contact form and information">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Form -->
+      <div class="reveal-left">
+        <div class="contact-form-wrap">
+          <h2 class="form-title">Request a Consultation</h2>
+          <p class="form-sub">Tell us about your security requirements and we'll get back to you within 24 hours.</p>
+
+          <form id="contact-form" novalidate aria-label="Contact and booking form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="f-name">Full Name</label>
+                <input id="f-name" type="text" name="name" autocomplete="name" placeholder="John Kamau" required/>
+              </div>
+              <div class="form-group">
+                <label for="f-company">Company / Organisation</label>
+                <input id="f-company" type="text" name="company" placeholder="Company Ltd"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="f-email">Email Address</label>
+                <input id="f-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required/>
+              </div>
+              <div class="form-group">
+                <label for="f-phone">Phone Number</label>
+                <input id="f-phone" type="tel" name="phone" autocomplete="tel" placeholder="+254 7XX XXX XXX"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="f-service">Service Required</label>
+              <select id="f-service" name="service">
+                <option value="">Select a service...</option>
+                <option>Patrol & Guarding</option>
+                <option>Detection & Tracking (IED/EDD/Narcotics)</option>
+                <option>VIP & Close Protection</option>
+                <option>Crowd Control</option>
+                <option>Grooming & Veterinary Care</option>
+                <option>Other / Not Sure</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="f-location">Site / Location</label>
+              <input id="f-location" type="text" name="location" placeholder="Nairobi, Kenya"/>
+            </div>
+            <div class="form-group">
+              <label for="f-message">Details of Your Requirement</label>
+              <textarea id="f-message" name="message" rows="4" placeholder="Brief description of your security needs, site size, duration, any specific concerns..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">
+              Send Enquiry
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <p class="form-note">Your information is handled in strict confidence. We do not share client data.</p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contact info -->
+      <div class="contact-info reveal-right">
+        <h3>Get In Touch</h3>
+
+        <div class="info-card">
+          <div class="info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4 19.79 19.79 0 0 1 1.58 4.84a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.82a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.92.32 1.86.55 2.82.68a2 2 0 0 1 1.72 2z"/></svg></div>
+          <div>
+            <p class="info-label">Phone</p>
+            <p class="info-val">
+              <a href="tel:+254721448555">+254 721 448 555</a><br>
+              <a href="tel:+254754448555">+254 754 448 555</a><br>
+              <a href="tel:+254202448555">020 2448 555</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div>
+            <p class="info-label">Email</p>
+            <p class="info-val">
+              <a href="mailto:clientservice@topnotchk9capability.co.ke">clientservice@topnotchk9capability.co.ke</a><br>
+              <a href="mailto:mokua@topnotchk9capability.co.ke">mokua@topnotchk9capability.co.ke</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg></div>
+          <div>
+            <p class="info-label">Location</p>
+            <p class="info-val">Balozi Road, Bishop Court<br>Kitengela, Kenya</p>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div>
+            <p class="info-label">Response Time</p>
+            <p class="info-val">We respond to all enquiries within 24 hours. Urgent deployments: call directly.</p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/254721448555" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers" aria-label="Career opportunities">
+  <div class="container" style="padding-top:0;">
+    <div class="section-header reveal" style="padding-top:80px; border-top:1px solid var(--white-10);">
+      <p class="section-label">Join the Team</p>
+      <h2 class="section-title">Career <span>Opportunities</span></h2>
+      <p class="section-desc">We are always looking for exceptional K9 handlers, trainers and support staff who share our commitment to security excellence.</p>
+    </div>
+
+    <div class="career-cards">
+      <div class="career-card reveal delay-1">
+        <div class="career-header">
+          <h3 class="career-title">K9 Handler</h3>
+          <span class="career-type">Full-Time</span>
+        </div>
+        <p class="career-desc">Operate and care for a certified working dog across patrol, detection or VIP protection deployments. Reporting to the Head of Training.</p>
+        <p class="career-reqs">Requirements</p>
+        <div class="career-req-list">
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Valid NASDU K9 handler certification</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>2+ years hands-on K9 handling experience</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Physical fitness and willingness to work shifts</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Clean background check</div>
+        </div>
+        <a href="mailto:clientservice@topnotchk9capability.co.ke?subject=Application: K9 Handler" class="career-apply">
+          Apply Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="career-card reveal delay-2">
+        <div class="career-header">
+          <h3 class="career-title">Dog Trainer</h3>
+          <span class="career-type">Full-Time</span>
+        </div>
+        <p class="career-desc">Design and implement training programs for new K9 recruits and refresher certification for existing operational dogs.</p>
+        <p class="career-reqs">Requirements</p>
+        <div class="career-req-list">
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>NASDU trainer-level certification preferred</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>3+ years training working dogs (patrol/detection)</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Proven track record in obedience and scent work</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Strong record-keeping and reporting skills</div>
+        </div>
+        <a href="mailto:clientservice@topnotchk9capability.co.ke?subject=Application: Dog Trainer" class="career-apply">
+          Apply Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="career-card reveal delay-3">
+        <div class="career-header">
+          <h3 class="career-title">Kennel Technician</h3>
+          <span class="career-type">Full-Time</span>
+        </div>
+        <p class="career-desc">Responsible for the daily care, health, nutrition and welfare of our K9 fleet. Coordinate with the veterinary team on health protocols.</p>
+        <p class="career-reqs">Requirements</p>
+        <div class="career-req-list">
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Certificate in Animal Health or equivalent</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>1+ year kennel or veterinary clinic experience</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Comfortable handling large, working breeds</div>
+        </div>
+        <a href="mailto:clientservice@topnotchk9capability.co.ke?subject=Application: Kennel Technician" class="career-apply">
+          Apply Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="career-card reveal delay-4">
+        <div class="career-header">
+          <h3 class="career-title">General Application</h3>
+          <span class="career-type">Open</span>
+        </div>
+        <p class="career-desc">Don't see a role that fits? We welcome applications from experienced security professionals, ex-military and law enforcement with K9 backgrounds.</p>
+        <p class="career-reqs">We value</p>
+        <div class="career-req-list">
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Military or law enforcement background</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Passion for canine welfare and training</div>
+          <div class="career-req-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Willingness to obtain NASDU certification</div>
+        </div>
+        <a href="mailto:clientservice@topnotchk9capability.co.ke?subject=General Application" class="career-apply">
+          Send CV
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer" style="margin-top:80px;" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="footer-logo"><svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect width="44" height="44" rx="3" fill="#0D1B2A"/><polygon points="0,44 44,0 44,44" fill="#CC0000"/><circle cx="32" cy="8" r="4" fill="white"/><rect x="29" y="12" width="6" height="11" rx="1.5" fill="white"/><rect x="28.5" y="22" width="3" height="9" rx="1" fill="white"/><rect x="33" y="22" width="3" height="9" rx="1" fill="white"/><ellipse cx="16" cy="35" rx="11" ry="6" fill="white"/><ellipse cx="25" cy="30" rx="5" ry="4" fill="white"/><rect x="27" y="30" width="4" height="3" rx="1.5" fill="white"/><polygon points="22,26 27,26 24,21" fill="white"/><rect x="9" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="13" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="17" y="40" width="2.5" height="4" rx="1" fill="white"/><line x1="29" y1="18" x2="25" y2="30" stroke="rgba(255,255,255,0.5)" stroke-width="1"/></svg><div class="footer-logo-text"><div class="top">TOP NOTCH</div><div class="sub">Canine Capability</div></div></div><p>Kenya's premier K9 security solutions provider since 2016.</p><div class="footer-certs"><span class="footer-cert-badge">NASDU</span><span class="footer-cert-badge">PROSAK</span><span class="footer-cert-badge">EAKC</span></div></div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="breeds.html">Our Breeds</a></li><li><a href="contact.html">Contact</a></li><li><a href="#careers">Careers</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Patrol & Guarding</a></li><li><a href="services.html">Detection & Tracking</a></li><li><a href="services.html">VIP Protection</a></li><li><a href="services.html">Crowd Control</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4 19.79 19.79 0 0 1 1.58 4.84a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.82a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.92.32 1.86.55 2.82.68a2 2 0 0 1 1.72 2z"/></svg><span>+254 721 448 555<br>+254 754 448 555</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:clientservice@topnotchk9capability.co.ke" style="color:var(--white-40); word-break:break-word; font-size:0.82rem;">clientservice@topnotchk9capability.co.ke</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg><span>Balozi Rd, Bishop Court<br>Kitengela, Kenya</span></div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="footer-bottom"><p>© 2026 Top Notch Canine Capability. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div></div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

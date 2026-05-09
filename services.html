@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Top Notch Canine Capability Services — Patrol & Guarding, Explosives & Narcotics Detection, VIP Close Protection, Crowd Control, Grooming and Veterinary Care."/>
+  <title>Services | Top Notch Canine Capability</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .services-list { padding: 96px 0; background: var(--bg); }
+    .service-full-card {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: center; padding: 56px 0;
+      border-bottom: 1px solid var(--white-10);
+    }
+    .service-full-card:last-child { border-bottom: none; }
+    .service-full-card.reverse { direction: rtl; }
+    .service-full-card.reverse > * { direction: ltr; }
+
+    .service-full-visual {
+      aspect-ratio: 16/10;
+      background: var(--bg-card);
+      border: 1px solid var(--white-10);
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .service-full-visual::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+    .service-visual-inner { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--white-10); }
+    .service-visual-inner svg { width: 60px; height: 60px; }
+    .service-visual-inner span { font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-40); }
+    .service-num { font-family: var(--font-heading); font-size: 5rem; font-weight: 700; color: var(--red-subtle); line-height: 1; position: absolute; bottom: 12px; right: 20px; }
+
+    .service-full-body {}
+    .service-full-body h2 { font-family: var(--font-heading); font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin: 12px 0 20px; }
+    .service-full-body h2 span { color: var(--red); }
+    .service-full-body p { color: var(--white-70); line-height: 1.85; margin-bottom: 16px; font-size: 0.95rem; }
+    .service-features { margin: 24px 0; display: flex; flex-direction: column; gap: 10px; }
+    .service-feature {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.88rem; color: var(--white-70);
+    }
+    .service-feature svg { width: 16px; height: 16px; stroke: var(--red); flex-shrink: 0; margin-top: 3px; }
+
+    .process-section { padding: 80px 0; background: var(--bg-alt); }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .process-steps::before {
+      content: '';
+      position: absolute; top: 28px; left: 60px; right: 60px; height: 1px;
+      background: linear-gradient(90deg, var(--red), var(--red-border), var(--red));
+      z-index: 0;
+    }
+    .process-step { text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+    .step-circle {
+      width: 56px; height: 56px;
+      background: var(--bg-alt); border: 2px solid var(--red);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--red);
+    }
+    .step-title { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+    .step-desc { font-size: 0.8rem; color: var(--white-40); line-height: 1.6; }
+
+    @media (max-width: 1024px) {
+      .service-full-card { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
+      .service-full-card.reverse { direction: ltr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .services-list { padding: 64px 0; }
+      .process-section { padding: 56px 0; }
+      .service-full-card { gap: 24px; padding: 40px 0; }
+      .service-num { font-size: 3.5rem; }
+    }
+    @media (max-width: 640px) {
+      .services-list { padding: 48px 0; }
+      .process-section { padding: 48px 0; }
+      .service-full-card { padding: 32px 0; }
+      .service-full-visual { aspect-ratio: 16/9; }
+      .service-full-body h2 { margin: 8px 0 14px; }
+      .service-features { gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .process-steps { grid-template-columns: 1fr; gap: 32px; }
+      .process-step { padding: 0; }
+      .service-num { font-size: 2.8rem; bottom: 8px; right: 12px; }
+    }
+    @media (max-width: 375px) {
+      .services-list { padding: 40px 0; }
+      .service-full-card { padding: 24px 0; }
+      .service-feature { font-size: 0.82rem; }
+      .step-title { font-size: 0.78rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Top Notch Canine Capability — Home">
+      <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect width="44" height="44" rx="3" fill="#0D1B2A"/><polygon points="0,44 44,0 44,44" fill="#CC0000"/><circle cx="32" cy="8" r="4" fill="white"/><rect x="29" y="12" width="6" height="11" rx="1.5" fill="white"/><rect x="28.5" y="22" width="3" height="9" rx="1" fill="white"/><rect x="33" y="22" width="3" height="9" rx="1" fill="white"/><ellipse cx="16" cy="35" rx="11" ry="6" fill="white"/><ellipse cx="25" cy="30" rx="5" ry="4" fill="white"/><rect x="27" y="30" width="4" height="3" rx="1.5" fill="white"/><polygon points="22,26 27,26 24,21" fill="white"/><rect x="9" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="13" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="17" y="40" width="2.5" height="4" rx="1" fill="white"/><line x1="29" y1="18" x2="25" y2="30" stroke="rgba(255,255,255,0.5)" stroke-width="1"/></svg>
+      <div class="logo-text"><span class="top">TOP NOTCH</span><span class="sub">Canine Capability</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="breeds.html">Our Breeds</a></li><li><a href="contact.html">Contact</a></li><li><a href="contact.html#careers">Careers</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Book Now</a>
+    <button id="hamburger" class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav id="mobile-menu" class="nav-mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a><a href="about.html">About Us</a><a href="services.html">Services</a><a href="breeds.html">Our Breeds</a><a href="contact.html">Contact</a><a href="contact.html#careers">Careers</a><a href="contact.html" class="nav-cta">Book Now</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="Services hero">
+  <div class="hero-slash" aria-hidden="true"></div>
+  <div class="container page-hero-inner">
+    <p class="page-hero-label">Capabilities</p>
+    <h1>Our <span>Services</span></h1>
+    <p class="page-hero-desc">From explosive detection to close personal protection — elite K9 capabilities deployed across Kenya and East Africa for over eight years.</p>
+  </div>
+</section>
+
+<!-- SERVICES LIST -->
+<section class="services-list" aria-label="Full services list">
+  <div class="container">
+
+    <!-- 01 Patrol & Guarding -->
+    <div class="service-full-card">
+      <div class="service-full-visual reveal-left" role="img" aria-label="Patrol and guarding service visual">
+        <div class="service-visual-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Patrol & Guarding</span>
+        </div>
+        <span class="service-num" aria-hidden="true">01</span>
+      </div>
+      <div class="service-full-body reveal-right">
+        <span class="badge badge-red">24/7 Available</span>
+        <h2>Patrol &amp; <span>Guarding</span></h2>
+        <p>K9 patrol teams deliver a deterrent that no CCTV or fence can match. Our certified handlers and working dogs are deployed to secure perimeters, protect property and safeguard personnel across a range of environments.</p>
+        <p>From logistics warehouses and industrial sites to residential estates and checkpoints — our patrol capability is adaptable, scalable and immediately deployable.</p>
+        <div class="service-features" aria-label="Service features">
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Perimeter and property security</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Loading dock and airport checkpoint security</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Overnight property guarding</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Personnel escort and site access control</div>
+        </div>
+        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Request Deployment<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- 02 Detection & Tracking -->
+    <div class="service-full-card reverse">
+      <div class="service-full-visual reveal-right" role="img" aria-label="Detection and tracking service visual">
+        <div class="service-visual-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span>Detection & Tracking</span>
+        </div>
+        <span class="service-num" aria-hidden="true">02</span>
+      </div>
+      <div class="service-full-body reveal-left">
+        <span class="badge badge-red">IED · EDD · Narcotics</span>
+        <h2>Detection &amp; <span>Tracking</span></h2>
+        <p>Our detection K9s are trained to the highest international standards, capable of identifying explosives, narcotics, contraband and missing persons with unmatched precision and minimal disruption to operations.</p>
+        <p>Certified handlers conduct all detection operations under strict NASDU protocols, ensuring defensible evidence handling and documented chain of custody where required.</p>
+        <div class="service-features" aria-label="Service features">
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>IED and explosives detection (EDD certified)</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Narcotics and contraband detection</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Cargo and luggage screening</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Search and rescue (SAR) tracking</div>
+        </div>
+        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Request Deployment<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- 03 VIP Protection -->
+    <div class="service-full-card">
+      <div class="service-full-visual reveal-left" role="img" aria-label="VIP protection service visual">
+        <div class="service-visual-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>VIP & Close Protection</span>
+        </div>
+        <span class="service-num" aria-hidden="true">03</span>
+      </div>
+      <div class="service-full-body reveal-right">
+        <span class="badge badge-red">Elite Units</span>
+        <h2>VIP &amp; Close <span>Protection</span></h2>
+        <p>Top Notch Canine fields elite K9 units for high-profile individuals who require discreet, professional close protection. Our teams are trained to integrate seamlessly with existing security details.</p>
+        <p>Whether securing a high-stakes event, protecting a corporate executive, or providing residential security for a high-value client — our K9 teams add a decisive layer of protection.</p>
+        <div class="service-features" aria-label="Service features">
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Executive and corporate security details</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>High-value event security</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Residential VIP protection</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Travel security escort</div>
+        </div>
+        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Request Deployment<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- 04 Crowd Control -->
+    <div class="service-full-card reverse">
+      <div class="service-full-visual reveal-right" role="img" aria-label="Crowd control service visual">
+        <div class="service-visual-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Crowd Control</span>
+        </div>
+        <span class="service-num" aria-hidden="true">04</span>
+      </div>
+      <div class="service-full-body reveal-left">
+        <span class="badge badge-red">Event Security</span>
+        <h2>Crowd <span>Control</span></h2>
+        <p>K9 teams are a proven deterrent for large-scale crowd management. The visible presence of a trained working dog and handler significantly reduces disorderly conduct and improves crowd compliance.</p>
+        <p>We have successfully deployed at major conferences, concerts, sporting events and government functions across Kenya — including at KICC Nairobi.</p>
+        <div class="service-features" aria-label="Service features">
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Large event and concert security</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Access control at high-footfall venues</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Government and diplomatic function security</div>
+          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Combined K9 + detection sweep on arrival</div>
+        </div>
+        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Request Deployment<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" aria-label="Deployment process">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">Our <span>Process</span></h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal delay-1">
+        <div class="step-circle" aria-hidden="true">01</div>
+        <h3 class="step-title">Initial Consultation</h3>
+        <p class="step-desc">We assess your site, threat level and operational requirements to recommend the right K9 capability.</p>
+      </div>
+      <div class="process-step reveal delay-2">
+        <div class="step-circle" aria-hidden="true">02</div>
+        <h3 class="step-title">Security Plan</h3>
+        <p class="step-desc">A tailored deployment plan is drawn up, specifying team composition, patrol routes and schedules.</p>
+      </div>
+      <div class="process-step reveal delay-3">
+        <div class="step-circle" aria-hidden="true">03</div>
+        <h3 class="step-title">Team Deployment</h3>
+        <p class="step-desc">Certified handlers and K9s are deployed to site. All teams carry valid NASDU credentials.</p>
+      </div>
+      <div class="process-step reveal delay-4">
+        <div class="step-circle" aria-hidden="true">04</div>
+        <h3 class="step-title">Reporting & Review</h3>
+        <p class="step-desc">We provide regular written incident reports and conduct quarterly performance reviews with clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (condensed) -->
+<footer id="footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect width="44" height="44" rx="3" fill="#0D1B2A"/><polygon points="0,44 44,0 44,44" fill="#CC0000"/><circle cx="32" cy="8" r="4" fill="white"/><rect x="29" y="12" width="6" height="11" rx="1.5" fill="white"/><rect x="28.5" y="22" width="3" height="9" rx="1" fill="white"/><rect x="33" y="22" width="3" height="9" rx="1" fill="white"/><ellipse cx="16" cy="35" rx="11" ry="6" fill="white"/><ellipse cx="25" cy="30" rx="5" ry="4" fill="white"/><rect x="27" y="30" width="4" height="3" rx="1.5" fill="white"/><polygon points="22,26 27,26 24,21" fill="white"/><rect x="9" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="13" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="17" y="40" width="2.5" height="4" rx="1" fill="white"/><line x1="29" y1="18" x2="25" y2="30" stroke="rgba(255,255,255,0.5)" stroke-width="1"/></svg><div class="footer-logo-text"><div class="top">TOP NOTCH</div><div class="sub">Canine Capability</div></div></div>
+        <p>Kenya's premier K9 security solutions provider since 2016.</p>
+        <div class="footer-certs"><span class="footer-cert-badge">NASDU</span><span class="footer-cert-badge">PROSAK</span><span class="footer-cert-badge">EAKC</span></div>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="breeds.html">Our Breeds</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Patrol & Guarding</a></li><li><a href="services.html">Detection & Tracking</a></li><li><a href="services.html">VIP Protection</a></li><li><a href="services.html">Crowd Control</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4 19.79 19.79 0 0 1 1.58 4.84a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.82a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.92.32 1.86.55 2.82.68a2 2 0 0 1 1.72 2z"/></svg><span>+254 721 448 555</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:clientservice@topnotchk9capability.co.ke" style="color:var(--white-40); word-break:break-word; font-size:0.82rem;">clientservice@topnotchk9capability.co.ke</a></div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="footer-bottom"><p>© 2026 Top Notch Canine Capability. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div></div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

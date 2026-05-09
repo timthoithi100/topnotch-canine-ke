@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="About Top Notch Canine Capability — Meet Director Bonifance Mokua, our military-grade certifications, and our journey since 2016."/>
+  <title>About Us | Top Notch Canine Capability</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* ── About page styles ─────────────────── */
+    .about-full { padding: 96px 0; background: var(--bg); }
+    .about-full-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+    .bio-img {
+      position: sticky; top: calc(var(--nav-h) + 24px);
+    }
+    .bio-img-frame {
+      aspect-ratio: 3/4; background: var(--bg-card);
+      border: 1px solid var(--white-10); border-radius: var(--radius-md);
+      overflow: hidden; position: relative;
+    }
+    .bio-img-frame::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+    .bio-img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 16px; background: linear-gradient(160deg, #141414, #0a0a0a);
+    }
+    .bio-img-placeholder svg { width: 80px; height: 80px; stroke: var(--white-10); }
+    .bio-img-placeholder span { font-family: var(--font-heading); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-40); }
+    .bio-name-card {
+      background: var(--bg-card); border: 1px solid var(--white-10);
+      border-radius: var(--radius-md); padding: 20px; margin-top: 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .bio-name-card h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); }
+    .bio-name-card p { font-size: 0.8rem; color: var(--red); margin-top: 4px; font-family: var(--font-heading); letter-spacing: 0.08em; text-transform: uppercase; }
+    .bio-name-card .badge-red { font-size: 0.6rem; }
+
+    .bio-content { space-y: 8; }
+    .bio-content h2 { font-family: var(--font-heading); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; color: var(--white); margin-bottom: 8px; }
+    .bio-content h2 span { color: var(--red); }
+    .bio-content .role { font-family: var(--font-heading); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+    .bio-content .role::before { content: ''; width: 20px; height: 1px; background: var(--red); display: block; }
+    .bio-para { color: var(--white-70); line-height: 1.85; margin-bottom: 20px; font-size: 0.95rem; }
+
+    .exp-timeline { margin: 32px 0; border-left: 2px solid var(--red); padding-left: 28px; }
+    .exp-item { position: relative; margin-bottom: 28px; }
+    .exp-item::before {
+      content: '';
+      position: absolute; left: -34px; top: 4px;
+      width: 10px; height: 10px;
+      border: 2px solid var(--red); border-radius: 50%;
+      background: var(--bg);
+    }
+    .exp-year { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+    .exp-title { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); margin-bottom: 4px; }
+    .exp-org { font-size: 0.82rem; color: var(--white-40); }
+
+    .certs-section { padding: 80px 0; background: var(--bg-alt); }
+    .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cert-card {
+      background: var(--bg-card); border: 1px solid var(--white-10);
+      border-radius: var(--radius-md); padding: 28px;
+      transition: border-color var(--transition), transform var(--transition-slow);
+    }
+    .cert-card:hover { border-color: var(--red-border); transform: translateY(-3px); }
+    .cert-icon { width: 44px; height: 44px; background: var(--red-subtle); border: 1px solid var(--red-border); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .cert-icon svg { width: 20px; height: 20px; stroke: var(--red); }
+    .cert-name { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
+    .cert-full { font-size: 0.8rem; color: var(--white-40); margin-bottom: 8px; }
+    .cert-note { font-size: 0.78rem; color: var(--white-40); line-height: 1.6; }
+
+    .values-section { padding: 80px 0; background: var(--bg); }
+    .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .value-item { text-align: center; padding: 32px 20px; }
+    .value-num { font-family: var(--font-heading); font-size: 3rem; font-weight: 700; color: var(--red); line-height: 1; margin-bottom: 8px; }
+    .value-label { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-70); }
+
+    @media (max-width: 1024px) {
+      .about-full-grid { grid-template-columns: 1fr; gap: 40px; }
+      .bio-img { position: static; max-width: 380px; }
+      .about-full { padding: 64px 0; }
+      .certs-section { padding: 56px 0; }
+      .values-section { padding: 56px 0; }
+    }
+    @media (max-width: 768px) {
+      .certs-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .values-grid { grid-template-columns: 1fr 1fr; gap: 0; }
+      .bio-img { max-width: 100%; }
+      .exp-timeline { margin: 24px 0; }
+      .bio-content h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+    }
+    @media (max-width: 640px) {
+      .about-full { padding: 48px 0; }
+      .certs-grid { grid-template-columns: 1fr; }
+      .bio-img-frame { aspect-ratio: 4/3; }
+      .bio-name-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .value-num { font-size: 2.5rem; }
+      .cert-card { padding: 20px; }
+      .about-full { padding: 40px 0; }
+      .certs-section { padding: 40px 0; }
+      .values-section { padding: 40px 0; }
+    }
+    @media (max-width: 375px) {
+      .cert-name { font-size: 0.9rem; }
+      .exp-timeline { padding-left: 20px; }
+      .exp-item::before { left: -27px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Top Notch Canine Capability — Home">
+      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="44" height="44" rx="3" fill="#0D1B2A"/>
+        <polygon points="0,44 44,0 44,44" fill="#CC0000"/>
+        <circle cx="32" cy="8" r="4" fill="white"/>
+        <rect x="29" y="12" width="6" height="11" rx="1.5" fill="white"/>
+        <rect x="28.5" y="22" width="3" height="9" rx="1" fill="white"/>
+        <rect x="33" y="22" width="3" height="9" rx="1" fill="white"/>
+        <ellipse cx="16" cy="35" rx="11" ry="6" fill="white"/>
+        <ellipse cx="25" cy="30" rx="5" ry="4" fill="white"/>
+        <rect x="27" y="30" width="4" height="3" rx="1.5" fill="white"/>
+        <polygon points="22,26 27,26 24,21" fill="white"/>
+        <rect x="9" y="40" width="2.5" height="4" rx="1" fill="white"/>
+        <rect x="13" y="40" width="2.5" height="4" rx="1" fill="white"/>
+        <rect x="17" y="40" width="2.5" height="4" rx="1" fill="white"/>
+        <line x1="29" y1="18" x2="25" y2="30" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+      </svg>
+      <div class="logo-text"><span class="top">TOP NOTCH</span><span class="sub">Canine Capability</span></div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="breeds.html">Our Breeds</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html#careers">Careers</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Book Now</a>
+    <button id="hamburger" class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav id="mobile-menu" class="nav-mobile" aria-label="Mobile navigation">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="services.html">Services</a>
+  <a href="breeds.html">Our Breeds</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html#careers">Careers</a>
+  <a href="contact.html" class="nav-cta">Book Now</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="About page hero">
+  <div class="hero-slash" aria-hidden="true"></div>
+  <div class="container page-hero-inner">
+    <p class="page-hero-label">Who We Are</p>
+    <h1>About <span>Top Notch</span></h1>
+    <p class="page-hero-desc">From military service to Kenya's leading K9 security provider — a decade of excellence built on discipline, expertise and unwavering commitment to security.</p>
+  </div>
+</section>
+
+<!-- LEADERSHIP BIO -->
+<section class="about-full" aria-label="Leadership profile">
+  <div class="container">
+    <div class="about-full-grid">
+      <div class="bio-img reveal-left">
+        <div class="bio-img-frame">
+          <div class="bio-img-placeholder" role="img" aria-label="Bonifance Mokua, Director and Head of Training">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="0.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Photo — Bonifance Mokua</span>
+          </div>
+        </div>
+        <div class="bio-name-card">
+          <div>
+            <h3>Bonifance Mokua</h3>
+            <p>Director | Head of Training</p>
+          </div>
+          <span class="badge badge-red">Available</span>
+        </div>
+      </div>
+
+      <div class="bio-content reveal-right">
+        <p class="section-label">Leadership</p>
+        <h2>Meet the <span>Director</span></h2>
+        <p class="role">Bonifance Mokua — Director | Head of Training</p>
+
+        <p class="bio-para">
+          Bonifance Mokua is a retired Military Police veteran with an exceptional career spanning Kenyan military K9 units, international UN peacekeeping operations in Somalia (UNMAS), and high-stakes airport security at Aden Adde International Airport in Mogadishu.
+        </p>
+        <p class="bio-para">
+          As a certified IED and EDD trainer, Bonifance has honed an approach that blends international operational standards with deep local knowledge of Kenya's security landscape. He founded Top Notch Canine Capability in 2016 with a single mission: to deliver security that human capabilities alone cannot achieve.
+        </p>
+        <p class="bio-para">
+          Today, under his leadership, the company operates across Kenya and East Africa — deploying elite K9 teams to corporations, government agencies, logistics firms, and high-profile events with a 4.9-star client satisfaction record.
+        </p>
+
+        <div class="exp-timeline" aria-label="Career timeline">
+          <div class="exp-item">
+            <p class="exp-year">2016 — Present</p>
+            <p class="exp-title">Director & Head of Training</p>
+            <p class="exp-org">Top Notch Canine Capability, Kitengela</p>
+          </div>
+          <div class="exp-item">
+            <p class="exp-year">Operations</p>
+            <p class="exp-title">K9 Security, Aden Adde International Airport</p>
+            <p class="exp-org">Mogadishu, Somalia</p>
+          </div>
+          <div class="exp-item">
+            <p class="exp-year">UN Service</p>
+            <p class="exp-title">IED/EDD Specialist</p>
+            <p class="exp-org">UNMAS — UN Mission Somalia</p>
+          </div>
+          <div class="exp-item">
+            <p class="exp-year">Military</p>
+            <p class="exp-title">Military Police K9 Unit</p>
+            <p class="exp-org">Kenya Defence Forces</p>
+          </div>
+        </div>
+
+        <a href="contact.html" class="btn btn-primary">
+          Contact Bonifance
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES / QUICK STATS -->
+<section class="values-section" aria-label="Company values">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <p class="section-label">Our Numbers</p>
+      <h2 class="section-title">Proven <span>Track Record</span></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-item reveal delay-1">
+        <div class="value-num" data-count="500" data-suffix="+">500+</div>
+        <div class="value-label">Dogs Trained</div>
+      </div>
+      <div class="value-item reveal delay-2">
+        <div class="value-num" data-count="8" data-suffix="+">8+</div>
+        <div class="value-label">Years Operating</div>
+      </div>
+      <div class="value-item reveal delay-3">
+        <div class="value-num" data-count="3">3</div>
+        <div class="value-label">Countries Served</div>
+      </div>
+      <div class="value-item reveal delay-4">
+        <div class="value-num">4.9<span style="font-size:2rem;">★</span></div>
+        <div class="value-label">Average Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section" aria-label="Certifications and memberships">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <p class="section-label">Credentials</p>
+      <h2 class="section-title">Certified & <span>Accredited</span></h2>
+      <p class="section-desc">Our certifications are renewed annually and align with the highest international standards for K9 security operations.</p>
+    </div>
+
+    <div class="certs-grid">
+      <div class="cert-card reveal delay-1">
+        <div class="cert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <p class="cert-name">NASDU</p>
+        <p class="cert-full">National Association of Security Dog Users</p>
+        <p class="cert-note">Internationally recognised standard for security dog deployment. Annual re-certification required.</p>
+      </div>
+      <div class="cert-card reveal delay-2">
+        <div class="cert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div>
+        <p class="cert-name">PROSAK</p>
+        <p class="cert-full">Protective and Safety Association of Kenya</p>
+        <p class="cert-note">Kenya's governing body for professional security service providers. Regulatory compliance assured.</p>
+      </div>
+      <div class="cert-card reveal delay-3">
+        <div class="cert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <p class="cert-name">EAKC</p>
+        <p class="cert-full">East Africa Kennel Club</p>
+        <p class="cert-note">Membership confirms our working breeds meet the highest pedigree and temperament standards in East Africa.</p>
+      </div>
+      <div class="cert-card reveal delay-1">
+        <div class="cert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <p class="cert-name">IED/EDD</p>
+        <p class="cert-full">Improvised Explosive Device / Explosive Detection Dog</p>
+        <p class="cert-note">Director-level certification in explosive detection, gained through UN operations and military service.</p>
+      </div>
+      <div class="cert-card reveal delay-2">
+        <div class="cert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 21V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v16"/><path d="M9 21v-6h6v6"/></svg></div>
+        <p class="cert-name">UNMAS</p>
+        <p class="cert-full">UN Mine Action Service</p>
+        <p class="cert-note">Operational experience under UN mandate in Somalia — highest-risk, real-world explosive detection environment.</p>
+      </div>
+      <div class="cert-card reveal delay-3">
+        <div class="cert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <p class="cert-name">Annual Re-cert</p>
+        <p class="cert-full">Continuous Competency Assurance</p>
+        <p class="cert-note">All handlers and K9s undergo annual NASDU re-certification to maintain operational currency and standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 44 44" fill="none" aria-hidden="true"><rect width="44" height="44" rx="3" fill="#0D1B2A"/><polygon points="0,44 44,0 44,44" fill="#CC0000"/><circle cx="32" cy="8" r="4" fill="white"/><rect x="29" y="12" width="6" height="11" rx="1.5" fill="white"/><rect x="28.5" y="22" width="3" height="9" rx="1" fill="white"/><rect x="33" y="22" width="3" height="9" rx="1" fill="white"/><ellipse cx="16" cy="35" rx="11" ry="6" fill="white"/><ellipse cx="25" cy="30" rx="5" ry="4" fill="white"/><rect x="27" y="30" width="4" height="3" rx="1.5" fill="white"/><polygon points="22,26 27,26 24,21" fill="white"/><rect x="9" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="13" y="40" width="2.5" height="4" rx="1" fill="white"/><rect x="17" y="40" width="2.5" height="4" rx="1" fill="white"/><line x1="29" y1="18" x2="25" y2="30" stroke="rgba(255,255,255,0.5)" stroke-width="1"/></svg>
+          <div class="footer-logo-text"><div class="top">TOP NOTCH</div><div class="sub">Canine Capability</div></div>
+        </div>
+        <p>Kenya's premier K9 security solutions provider. Military-grade canine teams for patrol, detection and protection since 2016.</p>
+        <div class="footer-certs"><span class="footer-cert-badge">NASDU</span><span class="footer-cert-badge">PROSAK</span><span class="footer-cert-badge">EAKC</span></div>
+        <div class="footer-socials" aria-label="Social media">
+          <a href="#" class="footer-social" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" class="footer-social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://wa.me/254721448555" class="footer-social" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="breeds.html">Our Breeds</a></li><li><a href="contact.html">Contact</a></li><li><a href="contact.html#careers">Careers</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">Patrol & Guarding</a></li><li><a href="services.html">Detection & Tracking</a></li><li><a href="services.html">VIP Protection</a></li><li><a href="services.html">Crowd Control</a></li><li><a href="services.html">Grooming</a></li><li><a href="services.html">Veterinary Care</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4 19.79 19.79 0 0 1 1.58 4.84a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.82a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.92.32 1.86.55 2.82.68a2 2 0 0 1 1.72 2z"/></svg><span>+254 721 448 555<br>+254 754 448 555</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:clientservice@topnotchk9capability.co.ke" style="color:var(--white-40); word-break:break-word;">clientservice@topnotchk9capability.co.ke</a></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 13-8 13S4 15.25 4 10a8 8 0 0 1 8-8z"/></svg><span>Balozi Rd, Bishop Court<br>Kitengela, Kenya</span></div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="footer-bottom"><p>© 2026 Top Notch Canine Capability. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
