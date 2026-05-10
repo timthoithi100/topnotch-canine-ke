@@ -269,15 +269,15 @@
       position: relative;
     }
     .about-img-box {
-      aspect-ratio: 4/3;
-      max-height: 400px;
+      aspect-ratio: 3/4;
+      max-height: 480px;
       background: var(--bg-card);
       border: 1px solid var(--white-10);
       border-radius: var(--radius-md);
       overflow: hidden;
       position: relative;
     }
-    .about-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .about-img-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
     .about-img-placeholder {
       width: 100%; height: 100%;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -833,13 +833,22 @@
     .why-caps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .why-cap { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--white-10); border-radius: 6px; font-size: 0.82rem; color: var(--white-70); }
     .why-cap svg { flex-shrink: 0; width: 14px; height: 14px; stroke: var(--red); }
-    .why-img { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .why-img-box { border-radius: var(--radius-sm); overflow: hidden; background: var(--bg-card); border: 1px solid var(--white-10); }
-    .why-img-box img { width: 100%; display: block; object-fit: cover; }
-    .why-img-box:first-child { grid-column: span 2; aspect-ratio: 16/9; }
-    .why-img-box:not(:first-child) { aspect-ratio: 4/3; }
-    @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; gap: 48px; } }
-    @media (max-width: 600px) { .why-caps { grid-template-columns: 1fr; } .why-img { grid-template-columns: 1fr; } .why-img-box:first-child { grid-column: span 1; } }
+    .why-img {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 4px;
+      height: 460px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--white-10);
+    }
+    .why-img-box { overflow: hidden; }
+    .why-img-box img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 0.5s ease; }
+    .why-img-box:hover img { transform: scale(1.04); }
+    .why-img-box:first-child { grid-row: span 2; }
+    @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; gap: 48px; } .why-img { height: 340px; } }
+    @media (max-width: 600px) { .why-caps { grid-template-columns: 1fr; } .why-img { grid-template-columns: 1fr 1fr; height: 260px; } .why-img-box:first-child { grid-row: span 2; } }
   </style>
   <div class="container">
     <div class="why-grid">
@@ -860,10 +869,10 @@
       </div>
       <div class="why-img reveal-right">
         <div class="why-img-box">
-          <img src="images/action-malinois-handler.jpg" alt="Top Notch K9 handler with patrol dogs" loading="lazy">
+          <img src="images/action-malinois-handler.jpg" alt="Top Notch K9 handler with patrol dogs" loading="lazy" style="object-position: center top;">
         </div>
         <div class="why-img-box">
-          <img src="images/action-dog-vehicle.jpg" alt="K9 vehicle search operation" loading="lazy">
+          <img src="images/action-detection-vest.jpg" alt="Detection dog in working vest" loading="lazy">
         </div>
         <div class="why-img-box">
           <img src="images/action-springer-luggage.jpg" alt="Springer Spaniel luggage detection" loading="lazy">

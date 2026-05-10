@@ -18,6 +18,7 @@
       border: 1px solid var(--white-10); border-radius: var(--radius-md);
       overflow: hidden; position: relative;
     }
+    .bio-img-frame .site-photo { object-position: top center; }
     .bio-img-frame::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -323,33 +324,102 @@
 <!-- CLIENTS / PORTFOLIO -->
 <section class="clients-section" aria-label="Our clients">
   <style>
-    .clients-section { padding: 80px 0; background: var(--bg-alt); }
-    .clients-logos { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 32px; margin-top: 48px; }
-    .client-logo-card { background: var(--bg-card); border: 1px solid var(--white-10); border-radius: var(--radius-sm); padding: 20px 32px; min-width: 160px; text-align: center; font-family: var(--font-heading); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-70); line-height: 1.4; transition: border-color 0.2s, color 0.2s; cursor: default; }
-    .client-logo-card:hover { border-color: var(--red); color: #fff; }
-    .client-logo-card .client-abbr { font-size: 1.4rem; font-weight: 700; color: var(--red); display: block; margin-bottom: 6px; }
+    .clients-section { padding: 80px 0; background: var(--bg-alt); overflow: hidden; }
+    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .clients-ticker-wrap { position: relative; }
+    .clients-ticker-wrap::before,
+    .clients-ticker-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+    }
+    .clients-ticker-wrap::before { left: 0; background: linear-gradient(to right, var(--bg-alt), transparent); }
+    .clients-ticker-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg-alt), transparent); }
+    .clients-ticker { display: flex; width: max-content; animation: marqueeScroll 18s linear infinite; gap: 20px; padding: 8px 0; }
+    .clients-ticker:hover { animation-play-state: paused; }
+    .client-card {
+      flex-shrink: 0; width: 220px;
+      background: var(--bg-card); border: 1px solid var(--white-10);
+      border-radius: var(--radius-md); padding: 28px 24px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      transition: border-color 0.25s, transform 0.25s;
+      cursor: default;
+    }
+    .client-card:hover { border-color: var(--red); transform: translateY(-4px); }
+    .client-monogram {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(204,0,0,0.12); border: 1px solid var(--red-border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700;
+      color: var(--red); letter-spacing: 0.05em;
+    }
+    .client-name {
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--white-70); text-align: center; line-height: 1.4;
+    }
+    .client-type {
+      font-size: 0.68rem; color: var(--white-40); text-align: center;
+    }
   </style>
   <div class="container">
     <div class="section-header centered reveal">
       <p class="section-label">Portfolio</p>
       <h2 class="section-title">Trusted <span>Clients</span></h2>
-      <p class="section-desc">Security companies, hotels and logistics firms across Kenya and East Africa trust Top Notch K9 teams to protect what matters most.</p>
+      <p class="section-desc">Security companies, hotels and logistics firms across Kenya trust Top Notch K9 teams to protect what matters most.</p>
     </div>
-    <div class="clients-logos">
-      <div class="client-logo-card reveal delay-1">
-        <span class="client-abbr">HH</span>H-Hour Security Limited
+  </div>
+  <div class="clients-ticker-wrap" style="margin-top:48px;">
+    <div class="clients-ticker" aria-label="Scrolling client list">
+      <!-- first set -->
+      <div class="client-card">
+        <div class="client-monogram">HH</div>
+        <p class="client-name">H-Hour Security</p>
+        <p class="client-type">Security Services</p>
       </div>
-      <div class="client-logo-card reveal delay-2">
-        <span class="client-abbr">RDR</span>Radar Security Limited
+      <div class="client-card">
+        <div class="client-monogram">RDR</div>
+        <p class="client-name">Radar Security</p>
+        <p class="client-type">Security Services</p>
       </div>
-      <div class="client-logo-card reveal delay-3">
-        <span class="client-abbr">ISM</span>Ismax Security Services
+      <div class="client-card">
+        <div class="client-monogram">ISM</div>
+        <p class="client-name">Ismax Security Services</p>
+        <p class="client-type">Security Services</p>
       </div>
-      <div class="client-logo-card reveal delay-4">
-        <span class="client-abbr">BT</span>Back Track Ltd
+      <div class="client-card">
+        <div class="client-monogram">BT</div>
+        <p class="client-name">Back Track Ltd</p>
+        <p class="client-type">Logistics &amp; Security</p>
       </div>
-      <div class="client-logo-card reveal delay-1">
-        <span class="client-abbr">D2</span>Dusit D2 Hotel
+      <div class="client-card">
+        <div class="client-monogram">D2</div>
+        <p class="client-name">Dusit D2 Hotel</p>
+        <p class="client-type">Hospitality</p>
+      </div>
+      <!-- duplicate set for seamless loop -->
+      <div class="client-card" aria-hidden="true">
+        <div class="client-monogram">HH</div>
+        <p class="client-name">H-Hour Security</p>
+        <p class="client-type">Security Services</p>
+      </div>
+      <div class="client-card" aria-hidden="true">
+        <div class="client-monogram">RDR</div>
+        <p class="client-name">Radar Security</p>
+        <p class="client-type">Security Services</p>
+      </div>
+      <div class="client-card" aria-hidden="true">
+        <div class="client-monogram">ISM</div>
+        <p class="client-name">Ismax Security Services</p>
+        <p class="client-type">Security Services</p>
+      </div>
+      <div class="client-card" aria-hidden="true">
+        <div class="client-monogram">BT</div>
+        <p class="client-name">Back Track Ltd</p>
+        <p class="client-type">Logistics &amp; Security</p>
+      </div>
+      <div class="client-card" aria-hidden="true">
+        <div class="client-monogram">D2</div>
+        <p class="client-name">Dusit D2 Hotel</p>
+        <p class="client-type">Hospitality</p>
       </div>
     </div>
   </div>
