@@ -80,6 +80,10 @@ p { color: var(--white-70); line-height: 1.75; }
 }
 .site-photo.loaded { opacity: 1; }
 
+/* Breed and service card images — contain so the full dog is always visible */
+.breed-img .site-photo,
+.svc-img .site-photo { object-fit: contain; }
+
 /* Overlay labels / numbers always sit above photos */
 .service-num,
 .breed-rank,

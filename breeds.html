@@ -7,60 +7,67 @@
   <title>Our Breeds | Top Notch Canine Capability</title>
   <link rel="stylesheet" href="css/style.css"/>
   <style>
+    /* Breeds page — card grid */
     .breeds-page { padding: 96px 0; background: var(--bg); }
-    .breed-full {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
-      align-items: center; padding: 64px 0;
-      border-bottom: 1px solid var(--white-10);
-    }
-    .breed-full:last-child { border-bottom: none; }
-    .breed-full.reverse { direction: rtl; }
-    .breed-full.reverse > * { direction: ltr; }
 
-    .breed-visual {
-      aspect-ratio: 16/9;
-      max-height: 380px;
+    .breeds-all-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .breed-card-detail {
       background: var(--bg-card);
       border: 1px solid var(--white-10);
       border-radius: var(--radius-md);
-      position: relative; overflow: hidden;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: border-color var(--transition), transform var(--transition-slow);
+      cursor: default;
+    }
+    .breed-card-detail:hover {
+      border-color: var(--red-border);
+      transform: translateY(-6px);
+    }
+
+    .breed-img {
+      height: 220px;
+      background: linear-gradient(135deg, #141414, #0a0a0a);
       display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
     }
-    .breed-visual::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--red), transparent);
+    .breed-img .site-photo { object-fit: contain; }
+    .breed-img svg { width: 80px; height: 80px; stroke: rgba(255,255,255,0.08); }
+    .breed-img-label {
+      position: absolute; top: 12px; left: 12px;
+      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      background: var(--red); color: var(--white);
+      padding: 4px 10px; border-radius: var(--radius);
+      z-index: 2;
     }
-    .breed-visual-body {
-      display: flex; flex-direction: column; align-items: center; gap: 16px;
-    }
-    .breed-visual-body svg { width: 80px; height: 80px; }
-    .breed-visual-body span { font-family: var(--font-heading); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-40); }
-    .breed-rank {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-      padding: 20px 20px 16px;
-    }
-    .breed-rank-label { font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
-    .breed-rank-val { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; }
 
-    .breed-info {}
-    .breed-info h2 { font-family: var(--font-heading); font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin: 12px 0 20px; }
-    .breed-info h2 span { color: var(--red); }
-    .breed-info p { color: var(--white-70); line-height: 1.85; margin-bottom: 16px; font-size: 0.95rem; }
-
-    .breed-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0; }
-    .breed-stat {
-      background: var(--bg-card); border: 1px solid var(--white-10);
-      border-radius: var(--radius); padding: 16px;
+    .breed-body { padding: 20px; display: flex; flex-direction: column; flex: 1; }
+    .breed-name {
+      font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--white);
+      margin-bottom: 8px;
     }
-    .breed-stat-label { font-family: var(--font-heading); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-40); margin-bottom: 4px; }
-    .breed-stat-val { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; }
-
-    .breed-roles { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-    .breed-role {
-      font-family: var(--font-heading); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 6px 12px; border: 1px solid var(--red-border); border-radius: var(--radius);
+    .breed-desc { font-size: 0.82rem; color: var(--white-70); line-height: 1.7; margin-bottom: 12px; flex: 1; }
+    .breed-meta {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      font-size: 0.75rem; color: var(--white-40);
+      margin-bottom: 12px; padding-top: 10px;
+      border-top: 1px solid var(--white-10);
+    }
+    .breed-meta strong { color: var(--white-70); }
+    .breed-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .breed-tag {
+      font-family: var(--font-heading); font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 8px;
+      border: 1px solid var(--red-border);
+      border-radius: var(--radius);
       color: var(--red); background: var(--red-subtle);
     }
 
@@ -80,36 +87,23 @@
     .breeding-note-inner h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 10px; }
     .breeding-note-inner p { color: var(--white-70); font-size: 0.9rem; line-height: 1.8; }
 
-    @media (max-width: 1024px) {
-      .breed-full { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
-      .breed-full.reverse { direction: ltr; }
-      .breed-visual { max-height: none; }
-    }
+    @media (max-width: 1280px) { .breeds-all-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 768px) {
       .breeds-page { padding: 64px 0; }
+      .breeds-all-grid { grid-template-columns: repeat(2, 1fr); }
       .breeding-note { padding: 40px 0; }
-      .breed-full { gap: 24px; padding: 40px 0; }
       .breeding-note-inner { flex-direction: column; gap: 20px; padding: 28px; }
     }
     @media (max-width: 640px) {
       .breeds-page { padding: 48px 0; }
-      .breed-full { padding: 32px 0; }
-      .breed-visual { aspect-ratio: 3/2; }
-      .breed-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
-      .breed-info h2 { margin: 8px 0 14px; }
-      .breeding-note-inner { padding: 24px 20px; }
+      .breed-img { height: 180px; }
     }
     @media (max-width: 480px) {
-      .breed-stats { grid-template-columns: 1fr 1fr; }
-      .breed-roles { gap: 6px; }
-      .breed-role { font-size: 0.6rem; padding: 5px 10px; }
+      .breeds-all-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 375px) {
       .breeds-page { padding: 40px 0; }
-      .breed-full { padding: 24px 0; }
-      .breed-stats { grid-template-columns: 1fr; }
       .breeding-note-inner { padding: 20px 16px; }
-      .breed-stat-val { font-size: 0.88rem; }
     }
   </style>
 </head>
@@ -139,113 +133,192 @@
   <div class="container page-hero-inner">
     <p class="page-hero-label">K9 Fleet</p>
     <h1>Our <span>Breeds</span></h1>
-    <p class="page-hero-desc">Selectively sourced from proven European working bloodlines. Every dog is assessed for drive, temperament and trainability before joining our operational fleet.</p>
+    <p class="page-hero-desc">Ten working breeds covering detection, patrol, protection and estate guarding. Selectively sourced from proven European and African bloodlines. Every dog assessed for drive, temperament and trainability before deployment.</p>
   </div>
 </section>
 
 <!-- BREEDS -->
 <section class="breeds-page" aria-label="Working breed profiles">
   <div class="container">
-
-    <!-- Belgian Malinois -->
-    <div class="breed-full">
-      <div class="breed-visual reveal-left" role="img" aria-label="Belgian Malinois working dog">
-        <img src="images/malinois-hero.jpg" alt="Belgian Malinois elite working dog — Top Notch Canine Capability" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
-        <div class="breed-visual-body">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
-          <span>Photo Placeholder</span>
-        </div>
-        <div class="breed-rank">
-          <p class="breed-rank-label">Primary Breed</p>
-          <p class="breed-rank-val">Belgian Malinois</p>
-        </div>
-      </div>
-      <div class="breed-info reveal-right">
-        <span class="badge badge-red">Most Deployed</span>
-        <h2>Belgian <span>Malinois</span></h2>
-        <p>The gold standard of military and law enforcement working dogs worldwide. The Malinois combines extraordinary drive, intelligence, agility and endurance in a compact, athletic frame.</p>
-        <p>Our Malinois are sourced from proven Belgian and Dutch working bloodlines and undergo rigorous selection screening before training commences. They are the backbone of our patrol, detection and VIP protection operations.</p>
-        <div class="breed-stats" aria-label="Breed characteristics">
-          <div class="breed-stat"><p class="breed-stat-label">Origin</p><p class="breed-stat-val">Belgium</p></div>
-          <div class="breed-stat"><p class="breed-stat-label">Drive Level</p><p class="breed-stat-val">Extreme</p></div>
-          <div class="breed-stat"><p class="breed-stat-label">Primary Role</p><p class="breed-stat-val">Patrol / Detection</p></div>
-          <div class="breed-stat"><p class="breed-stat-label">Certification</p><p class="breed-stat-val">NASDU</p></div>
-        </div>
-        <div class="breed-roles" aria-label="Deployment capabilities">
-          <span class="breed-role">Patrol</span>
-          <span class="breed-role">Detection</span>
-          <span class="breed-role">VIP Protection</span>
-          <span class="breed-role">SAR</span>
-          <span class="breed-role">Crowd Control</span>
-        </div>
-      </div>
+    <div class="section-header centered reveal">
+      <p class="section-label">K9 Fleet</p>
+      <h2 class="section-title">Our Working <span>Breeds</span></h2>
+      <p class="section-desc">Ten breeds covering detection, patrol, protection and estate guarding roles. Selectively sourced from proven working bloodlines across Europe and Africa.</p>
     </div>
 
-    <!-- Labrador Retriever -->
-    <div class="breed-full reverse">
-      <div class="breed-visual reveal-right" role="img" aria-label="Labrador Retriever detection dog">
-        <img src="images/labrador-hero.jpg" alt="Labrador Retriever detection specialist — Top Notch Canine Capability" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
-        <div class="breed-visual-body">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
-          <span>Photo Placeholder</span>
-        </div>
-        <div class="breed-rank">
-          <p class="breed-rank-label">Specialist Role</p>
-          <p class="breed-rank-val">Labrador Retriever</p>
-        </div>
-      </div>
-      <div class="breed-info reveal-left">
-        <span class="badge badge-red">Detection Expert</span>
-        <h2>Labrador <span>Retriever</span></h2>
-        <p>The Labrador's exceptional olfactory capability — estimated at 100,000× more sensitive than a human's — makes it the world's premier detection dog. Their sociable, non-threatening temperament is ideal for high-throughput public environments.</p>
-        <p>Our detection Labradors are trained to passively indicate on target odours, ensuring minimal disruption during airport, cargo and event screening operations.</p>
-        <div class="breed-stats" aria-label="Breed characteristics">
-          <div class="breed-stat"><p class="breed-stat-label">Origin</p><p class="breed-stat-val">UK / Canada</p></div>
-          <div class="breed-stat"><p class="breed-stat-label">Drive Level</p><p class="breed-stat-val">High — Food Motivated</p></div>
-          <div class="breed-stat"><p class="breed-stat-label">Primary Role</p><p class="breed-stat-val">Detection / SAR</p></div>
-          <div class="breed-stat"><p class="breed-stat-label">Certification</p><p class="breed-stat-val">NASDU · EDD</p></div>
-        </div>
-        <div class="breed-roles" aria-label="Deployment capabilities">
-          <span class="breed-role">Narcotics</span>
-          <span class="breed-role">Explosives</span>
-          <span class="breed-role">Cargo Detection</span>
-          <span class="breed-role">SAR</span>
-        </div>
-      </div>
-    </div>
+    <div class="breeds-all-grid">
 
-    <!-- Rottweiler -->
-    <div class="breed-full">
-      <div class="breed-visual reveal-left" role="img" aria-label="Rottweiler guard dog">
-        <img src="images/rottweiler-hero.jpg" alt="Rottweiler guard specialist — Top Notch Canine Capability" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
-        <div class="breed-visual-body">
-          <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
-          <span>Photo Placeholder</span>
+      <!-- German Shepherd -->
+      <article class="breed-card-detail reveal delay-1" aria-labelledby="breed-gsd">
+        <div class="breed-img" role="img" aria-label="German Shepherd working dog">
+          <img src="images/german-shepherd.jpg" alt="German Shepherd working dog" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Multi-Role</span>
         </div>
-        <div class="breed-rank">
-          <p class="breed-rank-label">Guard Specialist</p>
-          <p class="breed-rank-val">Rottweiler</p>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-gsd">German Shepherd</h3>
+          <p class="breed-desc">The world's most versatile working dog. Exceptional intelligence, trainability and nerve strength make the GSD the cornerstone of police and security K9 programmes worldwide.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> Germany</span><span><strong>Drive:</strong> High</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Patrol</span><span class="breed-tag">Detection</span><span class="breed-tag">Protection</span><span class="breed-tag">Police Work</span>
+          </div>
         </div>
-      </div>
-      <div class="breed-info reveal-right">
-        <span class="badge badge-red">Guard Specialist</span>
-        <h2><span>Rottweiler</span></h2>
-        <p>An imposing physical presence combined with a disciplined, confident temperament makes the Rottweiler our first choice for property guarding and deterrence roles. Few intruders will test a perimeter guarded by a trained Rottweiler.</p>
-        <p>Our Rottweilers undergo the same rigorous obedience and handler bonding program as all our K9s — ensuring they are safe, controllable and effective in operational environments.</p>
-        <div class="breed-stats" aria-label="Breed characteristics">
-          <div class="breed-stat"><p class="breed-stat-label">Origin</p><p class="breed-stat-val">Germany</p></div>
-          <div class="breed-stat"><p class="breed-stat-label">Drive Level</p><p class="breed-stat-val">High — Guard Instinct</p></div>
-          <div class="breed-stat"><p class="breed-stat-label">Primary Role</p><p class="breed-stat-val">Property Guard</p></div>
-          <div class="breed-stat"><p class="breed-stat-label">Certification</p><p class="breed-stat-val">NASDU · EAKC</p></div>
-        </div>
-        <div class="breed-roles" aria-label="Deployment capabilities">
-          <span class="breed-role">Patrol</span>
-          <span class="breed-role">Property Guard</span>
-          <span class="breed-role">Deterrence</span>
-        </div>
-      </div>
-    </div>
+      </article>
 
+      <!-- Belgian Malinois -->
+      <article class="breed-card-detail reveal delay-2" aria-labelledby="breed-mali">
+        <div class="breed-img" role="img" aria-label="Belgian Malinois working dog">
+          <img src="images/malinois-card.jpg" alt="Belgian Malinois working dog" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Most Deployed</span>
+        </div>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-mali">Belgian Malinois</h3>
+          <p class="breed-desc">The gold standard of military and law enforcement K9s. Extraordinary drive, agility and endurance make the Malinois our top choice for patrol, detection and VIP protection.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> Belgium</span><span><strong>Drive:</strong> Extreme</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Patrol</span><span class="breed-tag">Detection</span><span class="breed-tag">VIP</span><span class="breed-tag">SAR</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Labrador Retriever -->
+      <article class="breed-card-detail reveal delay-3" aria-labelledby="breed-lab">
+        <div class="breed-img" role="img" aria-label="Labrador Retriever detection dog">
+          <img src="images/labrador-card.jpg" alt="Labrador Retriever detection dog" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Detection Expert</span>
+        </div>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-lab">Labrador Retriever</h3>
+          <p class="breed-desc">Renowned olfactory precision makes the Labrador the world's premier detection specialist. Non-threatening temperament ideal for airports, cargo screening and public environments.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> UK / Canada</span><span><strong>Drive:</strong> High</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Detection</span><span class="breed-tag">SAR</span><span class="breed-tag">Narcotics</span><span class="breed-tag">Explosives</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Springer Spaniel -->
+      <article class="breed-card-detail reveal delay-1" aria-labelledby="breed-springer">
+        <div class="breed-img" role="img" aria-label="Springer Spaniel detection dog">
+          <img src="images/springer-spaniel.jpg" alt="Springer Spaniel detection dog" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Compact Detector</span>
+        </div>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-springer">Springer Spaniel</h3>
+          <p class="breed-desc">Energetic and highly agile, the Springer Spaniel excels in confined-space detection — vehicles, luggage and cargo. Fast, tenacious and reward-driven with exceptional nose work.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> England</span><span><strong>Drive:</strong> High</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Detection</span><span class="breed-tag">Narcotics</span><span class="breed-tag">Explosives</span><span class="breed-tag">Cargo Search</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Cocker Spaniel -->
+      <article class="breed-card-detail reveal delay-2" aria-labelledby="breed-cocker">
+        <div class="breed-img" role="img" aria-label="Cocker Spaniel detection dog">
+          <img src="images/cocker-spaniel.jpg" alt="Cocker Spaniel detection dog" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Passive Indicator</span>
+        </div>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-cocker">Cocker Spaniel</h3>
+          <p class="breed-desc">Compact and approachable, the Cocker Spaniel is prized for passive detection in public-facing environments. Their non-intimidating appearance makes them ideal for airport and crowd screening.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> England</span><span><strong>Drive:</strong> Medium-High</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Detection</span><span class="breed-tag">Passive Indicator</span><span class="breed-tag">Public Spaces</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Dutch Shepherd -->
+      <article class="breed-card-detail reveal delay-3" aria-labelledby="breed-dutch">
+        <div class="breed-img" role="img" aria-label="Dutch Shepherd working dog">
+          <img src="images/dutch-shepherd.jpg" alt="Dutch Shepherd working dog" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Military Grade</span>
+        </div>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-dutch">Dutch Shepherd</h3>
+          <p class="breed-desc">Shares the Malinois' extraordinary drive and athleticism with a slightly calmer temperament — a favourite in military and law enforcement units worldwide for patrol and protection.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> Netherlands</span><span><strong>Drive:</strong> Extreme</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Patrol</span><span class="breed-tag">Protection</span><span class="breed-tag">Military</span><span class="breed-tag">Detection</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Rottweiler -->
+      <article class="breed-card-detail reveal delay-1" aria-labelledby="breed-rott">
+        <div class="breed-img" role="img" aria-label="Rottweiler guard dog">
+          <img src="images/rottweiler-card.jpg" alt="Rottweiler guard dog" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Guard Specialist</span>
+        </div>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-rott">Rottweiler</h3>
+          <p class="breed-desc">Imposing presence combined with disciplined temperament. The Rottweiler is our preferred choice for property guarding and deterrence — few intruders will test a perimeter it guards.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> Germany</span><span><strong>Drive:</strong> High</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Patrol</span><span class="breed-tag">Guard</span><span class="breed-tag">Deterrence</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Belgian Shepherd -->
+      <article class="breed-card-detail reveal delay-2" aria-labelledby="breed-belg-shep">
+        <div class="breed-img" role="img" aria-label="Belgian Shepherd working dog">
+          <img src="images/belgian-shepherd.jpg" alt="Belgian Shepherd working dog" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Patrol &amp; Protection</span>
+        </div>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-belg-shep">Belgian Shepherd</h3>
+          <p class="breed-desc">A close relative of the Malinois, the Belgian Shepherd combines elegance with exceptional working drive. Known for loyalty, high intelligence and strong protective instincts.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> Belgium</span><span><strong>Drive:</strong> High</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Patrol</span><span class="breed-tag">Protection</span><span class="breed-tag">Detection</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Russian Mountain -->
+      <article class="breed-card-detail reveal delay-3" aria-labelledby="breed-russian">
+        <div class="breed-img" role="img" aria-label="Russian Mountain Dog estate guardian">
+          <img src="images/russian-mountain.jpg" alt="Russian Mountain Dog estate guardian" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Estate Guardian</span>
+        </div>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-russian">Russian Mountain Dog</h3>
+          <p class="breed-desc">Massively built and fiercely territorial, the Russian Mountain Dog (Caucasian Ovcharka) is a formidable estate guardian. Imposing size and natural protective instinct make it a powerful deterrent.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> Russia / Caucasus</span><span><strong>Drive:</strong> Territorial</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Estate Guard</span><span class="breed-tag">Deterrence</span><span class="breed-tag">Perimeter</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- South African Mastiff -->
+      <article class="breed-card-detail reveal delay-1" aria-labelledby="breed-boerboel">
+        <div class="breed-img" role="img" aria-label="South African Mastiff guard dog">
+          <img src="images/sa-mastiff.jpg" alt="South African Mastiff Boerboel guard dog" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <span class="breed-img-label">Property Guard</span>
+        </div>
+        <div class="breed-body">
+          <h3 class="breed-name" id="breed-boerboel">South African Mastiff</h3>
+          <p class="breed-desc">Bred in South Africa as a farm guardian, the Boerboel (South African Mastiff) is one of Africa's most effective property protection dogs — powerful, confident and deeply loyal.</p>
+          <div class="breed-meta"><span><strong>Origin:</strong> South Africa</span><span><strong>Drive:</strong> High</span></div>
+          <div class="breed-tags" aria-label="Deployment roles">
+            <span class="breed-tag">Property Guard</span><span class="breed-tag">Protection</span><span class="breed-tag">Deterrence</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
   </div>
 </section>
 
