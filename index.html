@@ -269,15 +269,14 @@
       position: relative;
     }
     .about-img-box {
-      aspect-ratio: 3/4;
-      max-height: 480px;
+      height: 560px;
       background: var(--bg-card);
       border: 1px solid var(--white-10);
       border-radius: var(--radius-md);
       overflow: hidden;
       position: relative;
     }
-    .about-img-box img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .about-img-box img { width: 100%; height: 100%; object-fit: contain; object-position: top center; }
     .about-img-placeholder {
       width: 100%; height: 100%;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -286,8 +285,9 @@
     }
     .about-img-placeholder svg { width: 48px; height: 48px; stroke: var(--white-10); }
     .about-img-placeholder span { font-family: var(--font-heading); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .about-img-wrap { overflow: visible; }
     .about-badge-card {
-      position: absolute; bottom: -20px; right: -20px;
+      position: absolute; bottom: 24px; right: -28px; z-index: 4;
       background: var(--red);
       border-radius: var(--radius-md);
       padding: 20px 24px;
@@ -955,21 +955,13 @@
   <style>
     #dogs-at-work { padding: 96px 0; background: var(--bg-alt); }
     .daw-header { text-align: center; margin-bottom: 48px; }
-    .daw-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto; gap: 12px; }
+    .daw-mosaic { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .daw-photo { border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 4/3; background: var(--bg-card); border: 1px solid var(--white-10); }
     .daw-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s var(--ease); }
     .daw-photo:hover img { transform: scale(1.05); }
-    .daw-photo.daw-wide { grid-column: span 2; aspect-ratio: 16/9; }
     .daw-caption { text-align: center; margin-top: 40px; }
     .daw-caption p { color: var(--white-40); font-size: 0.85rem; }
-    @media (max-width: 768px) {
-      .daw-mosaic { grid-template-columns: 1fr 1fr; }
-      .daw-photo.daw-wide { grid-column: span 2; }
-    }
-    @media (max-width: 480px) {
-      .daw-mosaic { grid-template-columns: 1fr; }
-      .daw-photo.daw-wide { grid-column: span 1; aspect-ratio: 4/3; }
-    }
+    @media (max-width: 480px) { .daw-mosaic { grid-template-columns: 1fr; } }
   </style>
   <div class="container">
     <div class="daw-header reveal">
@@ -978,20 +970,17 @@
       <p class="section-desc">Elite K9 teams deployed across vehicles, cargo zones, airports, seaports and crowded venues — detecting threats before they escalate.</p>
     </div>
     <div class="daw-mosaic">
-      <div class="daw-photo daw-wide reveal delay-1">
-        <img src="images/action-dog-vehicle.jpg" alt="Belgian Malinois K9 patrol dogs with handler" loading="lazy" style="object-position: top center;">
+      <div class="daw-photo reveal delay-1">
+        <img src="images/action-malinois-handler.jpg" alt="K9 detection dog on active deployment" loading="lazy" style="object-position: center 60%;">
       </div>
       <div class="daw-photo reveal delay-2">
-        <img src="images/action-malinois-handler.jpg" alt="K9 detection dog searching vehicle" loading="lazy" style="object-position: center bottom;">
-      </div>
-      <div class="daw-photo reveal delay-1">
         <img src="images/action-detection-vest.jpg" alt="Detection dog conducting aircraft cabin screening" loading="lazy">
       </div>
-      <div class="daw-photo reveal delay-2">
-        <img src="images/action-springer-luggage.jpg" alt="Springer Spaniel searching luggage at airport" loading="lazy">
-      </div>
       <div class="daw-photo reveal delay-3">
-        <img src="images/action-dog-aircraft.jpg" alt="Springer Spaniel detection dog at luggage screening" loading="lazy">
+        <img src="images/action-springer-luggage.jpg" alt="Black Labrador with detection vest searching luggage" loading="lazy">
+      </div>
+      <div class="daw-photo reveal delay-1">
+        <img src="images/action-dog-aircraft.jpg" alt="Springer Spaniel detection dog at luggage point" loading="lazy">
       </div>
     </div>
     <div class="daw-caption reveal">
