@@ -3,50 +3,85 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Top Notch Canine Capability Services — Patrol & Guarding, Explosives & Narcotics Detection, VIP Close Protection, Crowd Control, Grooming and Veterinary Care."/>
+  <meta name="description" content="Top Notch Canine Capability Services — Detection Dog Training, Supply of Trained Dogs, Handler Training, Vet Care, Grooming, Kennel Construction, Equipment and K9 Consultation across Kenya."/>
   <title>Services | Top Notch Canine Capability</title>
   <link rel="stylesheet" href="css/style.css"/>
   <style>
-    .services-list { padding: 96px 0; background: var(--bg); }
-    .service-full-card {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-      align-items: center; padding: 56px 0;
-      border-bottom: 1px solid var(--white-10);
+    /* ── Services grid ───────────────────────── */
+    .services-all { padding: 96px 0; background: var(--bg); }
+    .services-all-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
-    .service-full-card:last-child { border-bottom: none; }
-    .service-full-card.reverse { direction: rtl; }
-    .service-full-card.reverse > * { direction: ltr; }
 
-    .service-full-visual {
-      aspect-ratio: 16/10;
-      max-height: 340px;
+    .svc-card {
       background: var(--bg-card);
       border: 1px solid var(--white-10);
       border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: border-color var(--transition), transform var(--transition-slow), box-shadow var(--transition);
+      cursor: default;
     }
-    .service-full-visual::before {
+    .svc-card:hover {
+      border-color: var(--red-border);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px var(--red-border);
+    }
+
+    /* Photo / placeholder area */
+    .svc-img {
+      height: 200px;
+      background: var(--bg-section);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .svc-img::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, var(--red), transparent);
+      z-index: 2;
     }
-    .service-visual-inner { display: flex; flex-direction: column; align-items: center; gap: 12px; color: var(--white-10); }
-    .service-visual-inner svg { width: 60px; height: 60px; }
-    .service-visual-inner span { font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-40); }
-    .service-num { font-family: var(--font-heading); font-size: 5rem; font-weight: 700; color: var(--red-subtle); line-height: 1; position: absolute; bottom: 12px; right: 20px; }
-
-    .service-full-body {}
-    .service-full-body h2 { font-family: var(--font-heading); font-size: clamp(1.6rem, 2.5vw, 2.2rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin: 12px 0 20px; }
-    .service-full-body h2 span { color: var(--red); }
-    .service-full-body p { color: var(--white-70); line-height: 1.85; margin-bottom: 16px; font-size: 0.95rem; }
-    .service-features { margin: 24px 0; display: flex; flex-direction: column; gap: 10px; }
-    .service-feature {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 0.88rem; color: var(--white-70);
+    .svc-img-icon {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      position: relative; z-index: 1;
     }
-    .service-feature svg { width: 16px; height: 16px; stroke: var(--red); flex-shrink: 0; margin-top: 3px; }
+    .svc-img-icon svg { width: 52px; height: 52px; stroke: rgba(255,255,255,0.08); }
+    .svc-img-icon span { font-family: var(--font-heading); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white-40); }
+    .svc-num-badge {
+      position: absolute; bottom: 10px; right: 14px;
+      font-family: var(--font-heading); font-size: 3.5rem; font-weight: 700;
+      color: rgba(204,0,0,0.07); line-height: 1; z-index: 1; pointer-events: none;
+    }
 
+    /* Card body */
+    .svc-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+    .svc-name {
+      font-family: var(--font-heading); font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--white);
+      margin-bottom: 10px; line-height: 1.3;
+    }
+    .svc-name span { color: var(--red); }
+    .svc-desc { font-size: 0.85rem; color: var(--white-70); line-height: 1.75; margin-bottom: 16px; flex: 1; }
+    .svc-features { display: flex; flex-direction: column; gap: 7px; margin-bottom: 20px; }
+    .svc-feature {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.8rem; color: var(--white-40);
+    }
+    .svc-feature svg { width: 13px; height: 13px; stroke: var(--red); flex-shrink: 0; margin-top: 2px; }
+    .svc-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--red); text-decoration: none;
+      transition: gap var(--transition); margin-top: auto;
+    }
+    .svc-cta:hover { gap: 10px; }
+    .svc-cta svg { width: 13px; height: 13px; }
+
+    /* Process */
     .process-section { padding: 80px 0; background: var(--bg-alt); }
     .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
     .process-steps::before {
@@ -66,35 +101,28 @@
     .step-title { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); margin-bottom: 8px; }
     .step-desc { font-size: 0.8rem; color: var(--white-40); line-height: 1.6; }
 
+    /* Responsive */
     @media (max-width: 1024px) {
-      .service-full-card { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
-      .service-full-card.reverse { direction: ltr; }
+      .services-all-grid { grid-template-columns: repeat(2, 1fr); }
       .process-steps { grid-template-columns: 1fr 1fr; }
       .process-steps::before { display: none; }
     }
     @media (max-width: 768px) {
-      .services-list { padding: 64px 0; }
+      .services-all { padding: 64px 0; }
       .process-section { padding: 56px 0; }
-      .service-full-card { gap: 24px; padding: 40px 0; }
-      .service-num { font-size: 3.5rem; }
     }
     @media (max-width: 640px) {
-      .services-list { padding: 48px 0; }
-      .process-section { padding: 48px 0; }
-      .service-full-card { padding: 32px 0; }
-      .service-full-visual { aspect-ratio: 16/9; }
-      .service-full-body h2 { margin: 8px 0 14px; }
-      .service-features { gap: 8px; }
+      .services-all { padding: 48px 0; }
+      .services-all-grid { grid-template-columns: 1fr; }
+      .svc-img { height: 180px; }
     }
     @media (max-width: 480px) {
       .process-steps { grid-template-columns: 1fr; gap: 32px; }
       .process-step { padding: 0; }
-      .service-num { font-size: 2.8rem; bottom: 8px; right: 12px; }
     }
     @media (max-width: 375px) {
-      .services-list { padding: 40px 0; }
-      .service-full-card { padding: 24px 0; }
-      .service-feature { font-size: 0.82rem; }
+      .services-all { padding: 40px 0; }
+      .svc-name { font-size: 0.92rem; }
       .step-title { font-size: 0.78rem; }
     }
   </style>
@@ -125,114 +153,253 @@
   <div class="container page-hero-inner">
     <p class="page-hero-label">Capabilities</p>
     <h1>Our <span>Services</span></h1>
-    <p class="page-hero-desc">From explosive detection to close personal protection — elite K9 capabilities deployed across Kenya and East Africa for over eight years.</p>
+    <p class="page-hero-desc">Eleven specialist K9 services — from detection dog training and handler certification to vet care, kennel construction and equipment supply. Everything your canine operation needs, under one roof.</p>
   </div>
 </section>
 
-<!-- SERVICES LIST -->
-<section class="services-list" aria-label="Full services list">
+<!-- SERVICES GRID -->
+<section class="services-all" aria-label="All services">
   <div class="container">
-
-    <!-- 01 Patrol & Guarding -->
-    <div class="service-full-card">
-      <div class="service-full-visual reveal-left" role="img" aria-label="Patrol and guarding service visual">
-        <img src="images/service-patrol.jpg" alt="K9 patrol and guarding team on deployment" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
-        <div class="service-visual-inner">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Patrol & Guarding</span>
-        </div>
-        <span class="service-num" aria-hidden="true">01</span>
-      </div>
-      <div class="service-full-body reveal-right">
-        <span class="badge badge-red">24/7 Available</span>
-        <h2>Patrol &amp; <span>Guarding</span></h2>
-        <p>K9 patrol teams deliver a deterrent that no CCTV or fence can match. Our certified handlers and working dogs are deployed to secure perimeters, protect property and safeguard personnel across a range of environments.</p>
-        <p>From logistics warehouses and industrial sites to residential estates and checkpoints — our patrol capability is adaptable, scalable and immediately deployable.</p>
-        <div class="service-features" aria-label="Service features">
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Perimeter and property security</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Loading dock and airport checkpoint security</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Overnight property guarding</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Personnel escort and site access control</div>
-        </div>
-        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Request Deployment<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
+    <div class="section-header centered reveal">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">All <span>Services</span></h2>
+      <p class="section-desc" style="margin:16px auto 0;">From training and supply to vet care and kennel construction — complete K9 capability for security companies, government agencies and private clients across Kenya.</p>
     </div>
 
-    <!-- 02 Detection & Tracking -->
-    <div class="service-full-card reverse">
-      <div class="service-full-visual reveal-right" role="img" aria-label="Detection and tracking service visual">
-        <img src="images/service-detection.jpg" alt="K9 detection dog performing explosives and narcotics search" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
-        <div class="service-visual-inner">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <span>Detection & Tracking</span>
-        </div>
-        <span class="service-num" aria-hidden="true">02</span>
-      </div>
-      <div class="service-full-body reveal-left">
-        <span class="badge badge-red">IED · EDD · Narcotics</span>
-        <h2>Detection &amp; <span>Tracking</span></h2>
-        <p>Our detection K9s are trained to the highest international standards, capable of identifying explosives, narcotics, contraband and missing persons with unmatched precision and minimal disruption to operations.</p>
-        <p>Certified handlers conduct all detection operations under strict NASDU protocols, ensuring defensible evidence handling and documented chain of custody where required.</p>
-        <div class="service-features" aria-label="Service features">
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>IED and explosives detection (EDD certified)</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Narcotics and contraband detection</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Cargo and luggage screening</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Search and rescue (SAR) tracking</div>
-        </div>
-        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Request Deployment<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-    </div>
+    <div class="services-all-grid">
 
-    <!-- 03 VIP Protection -->
-    <div class="service-full-card">
-      <div class="service-full-visual reveal-left" role="img" aria-label="VIP protection service visual">
-        <img src="images/service-vip.jpg" alt="Elite K9 VIP and close protection team" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
-        <div class="service-visual-inner">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span>VIP & Close Protection</span>
+      <!-- 01 Detection Dog Training -->
+      <article class="svc-card reveal delay-1">
+        <div class="svc-img">
+          <img src="images/svc-detection-training.jpg" alt="Detection dog narcotics and explosives training" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Detection Training</span></div>
+          <span class="svc-num-badge" aria-hidden="true">01</span>
         </div>
-        <span class="service-num" aria-hidden="true">03</span>
-      </div>
-      <div class="service-full-body reveal-right">
-        <span class="badge badge-red">Elite Units</span>
-        <h2>VIP &amp; Close <span>Protection</span></h2>
-        <p>Top Notch Canine fields elite K9 units for high-profile individuals who require discreet, professional close protection. Our teams are trained to integrate seamlessly with existing security details.</p>
-        <p>Whether securing a high-stakes event, protecting a corporate executive, or providing residential security for a high-value client — our K9 teams add a decisive layer of protection.</p>
-        <div class="service-features" aria-label="Service features">
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Executive and corporate security details</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>High-value event security</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Residential VIP protection</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Travel security escort</div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">NASDU Certified</span>
+          <h2 class="svc-name">Training of <span>Detection Dogs</span></h2>
+          <p class="svc-desc">Professional imprinting and certification of detection K9s to NASDU and international standards. Covering narcotics — cocaine, heroin, cannabis, methamphetamine — and full explosives/IED detection. Reward-based conditioning for reliable, repeatable operational performance.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Narcotics detection (cocaine, heroin, cannabis)</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>IED and explosives detection (EDD)</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Passive and active indication training</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Certificate on completion · Annual recertification</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Request Deployment<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-    </div>
+      </article>
 
-    <!-- 04 Crowd Control -->
-    <div class="service-full-card reverse">
-      <div class="service-full-visual reveal-right" role="img" aria-label="Crowd control service visual">
-        <img src="images/service-crowd.jpg" alt="K9 crowd control team at large event security deployment" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
-        <div class="service-visual-inner">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <span>Crowd Control</span>
+      <!-- 02 Supply of Trained Dogs -->
+      <article class="svc-card reveal delay-2">
+        <div class="svc-img">
+          <img src="images/svc-supply-dogs.jpg" alt="Supply of highly trained working dogs" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Supply of Dogs</span></div>
+          <span class="svc-num-badge" aria-hidden="true">02</span>
         </div>
-        <span class="service-num" aria-hidden="true">04</span>
-      </div>
-      <div class="service-full-body reveal-left">
-        <span class="badge badge-red">Event Security</span>
-        <h2>Crowd <span>Control</span></h2>
-        <p>K9 teams are a proven deterrent for large-scale crowd management. The visible presence of a trained working dog and handler significantly reduces disorderly conduct and improves crowd compliance.</p>
-        <p>We have successfully deployed at major conferences, concerts, sporting events and government functions across Kenya — including at KICC Nairobi.</p>
-        <div class="service-features" aria-label="Service features">
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Large event and concert security</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Access control at high-footfall venues</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Government and diplomatic function security</div>
-          <div class="service-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Combined K9 + detection sweep on arrival</div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">European Bloodlines</span>
+          <h2 class="svc-name">Supply of Highly <span>Trained Dogs</span></h2>
+          <p class="svc-desc">We source, train and supply certified working dogs for patrol, VIP protection, detection and crowd deterrence operations across East Africa. All dogs are imported from proven European working bloodlines and assessed for drive, temperament and health before placement.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Belgian Malinois · Labrador · Rottweiler</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Patrol, VIP, detection and crowd-control roles</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Full health and vaccination records provided</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Post-placement handler support included</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Request Deployment<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </div>
-    </div>
+      </article>
 
+      <!-- 03 Dog Handlers Training -->
+      <article class="svc-card reveal delay-3">
+        <div class="svc-img">
+          <img src="images/svc-handler-training.jpg" alt="Dog handler certification training" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Handler Training</span></div>
+          <span class="svc-num-badge" aria-hidden="true">03</span>
+        </div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">NASDU Pathway</span>
+          <h2 class="svc-name">Dog <span>Handlers Training</span></h2>
+          <p class="svc-desc">Certified training programs for security personnel, K9 unit managers and corporate teams. Covering basic obedience, off-leash control, detection procedures, handler safety, and NASDU certification pathways. Available for new handlers and refresher certification.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Basic and advanced obedience control</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Detection search procedures</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Handler safety and legal protocols</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Available for individuals and corporate teams</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 04 Dog Feed Supply -->
+      <article class="svc-card reveal delay-1">
+        <div class="svc-img">
+          <img src="images/svc-dog-feed.jpg" alt="Premium dog feed and nutrition supply" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg><span>Dog Feed Supply</span></div>
+          <span class="svc-num-badge" aria-hidden="true">04</span>
+        </div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">Nationwide Delivery</span>
+          <h2 class="svc-name">Dog <span>Feed Supply</span></h2>
+          <p class="svc-desc">Premium nutrition for working and performance K9s. We supply quality feeds formulated for the high caloric and protein demands of active working dogs. Available for individual dogs or full kennel supply contracts across Kenya.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Performance-grade dry and wet feed</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Bulk kennel supply contracts</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Delivery across Kenya</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Nutritional guidance included</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 05 Vet Care -->
+      <article class="svc-card reveal delay-2">
+        <div class="svc-img">
+          <img src="images/svc-vet-care.jpg" alt="Veterinary care for working dogs" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Vet Care</span></div>
+          <span class="svc-num-badge" aria-hidden="true">05</span>
+        </div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">Working Dog Specialists</span>
+          <h2 class="svc-name">Veterinary <span>Care</span></h2>
+          <p class="svc-desc">Full veterinary health services for operational and companion K9s. Our vet team understands the specific physical demands of working dogs. Services include routine wellness checks, vaccinations, injury management and pre-deployment health clearances.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Routine wellness checks and vaccinations</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Deworming and parasite control</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Injury treatment and rehabilitation</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Pre-deployment health clearance certificates</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 06 Grooming -->
+      <article class="svc-card reveal delay-3">
+        <div class="svc-img">
+          <img src="images/svc-grooming.jpg" alt="Professional dog grooming services" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg><span>Grooming</span></div>
+          <span class="svc-num-badge" aria-hidden="true">06</span>
+        </div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">Full Service</span>
+          <h2 class="svc-name">Grooming <span>Services</span></h2>
+          <p class="svc-desc">Professional grooming for working and companion dogs. Maintaining coat health and hygiene is critical for operational K9s. Our grooming team handles all breeds with care, using products safe for working animals.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Full bath, blow-dry and coat brushing</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Nail trimming and ear cleaning</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Dental hygiene check</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Regular maintenance schedules available</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 07 Kennel Construction -->
+      <article class="svc-card reveal delay-1">
+        <div class="svc-img">
+          <img src="images/svc-kennel.jpg" alt="Professional kennel construction and design" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Kennel Construction</span></div>
+          <span class="svc-num-badge" aria-hidden="true">07</span>
+        </div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">Custom Build</span>
+          <h2 class="svc-name">Kennel <span>Construction</span></h2>
+          <p class="svc-desc">Design, supply and construction of professional kennels for working dog facilities, security companies and private clients. We build to international K9 welfare standards — durable, hygienic and secure.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Custom design — single units to full facilities</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Weather-resistant, durable materials</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Drainage and sanitation systems</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Security-grade fencing and access locks</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 08 Canine Transfers -->
+      <article class="svc-card reveal delay-2">
+        <div class="svc-img">
+          <img src="images/svc-transfers.jpg" alt="Canine transfer and transport across Kenya" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span>Canine Transfers</span></div>
+          <span class="svc-num-badge" aria-hidden="true">08</span>
+        </div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">Nationwide</span>
+          <h2 class="svc-name">Canine Transfers <span>Across Kenya</span></h2>
+          <p class="svc-desc">Safe, professional transportation of dogs across Kenya. Whether relocating a K9 unit, delivering a newly purchased dog, or transporting for veterinary care — we ensure stress-free journeys with experienced handlers accompanying every move.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Nairobi and nationwide county coverage</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Experienced handler accompaniment</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Health documentation handled</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Emergency transfer available</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 09 Equipment & Accessories -->
+      <article class="svc-card reveal delay-3">
+        <div class="svc-img">
+          <img src="images/svc-equipment.jpg" alt="Dog equipment and accessories for sale" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span>Equipment & Accessories</span></div>
+          <span class="svc-num-badge" aria-hidden="true">09</span>
+        </div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">Military-Grade Gear</span>
+          <h2 class="svc-name">Dog Equipment <span>&amp; Accessories</span></h2>
+          <p class="svc-desc">Specialist K9 equipment for handlers, security teams and dog owners. We stock brands trusted by military and law enforcement worldwide — training aids, harnesses, protective gear and kennel accessories.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Training leads, long lines and tracking gear</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Working harnesses, patrol vests and muzzles</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Bite sleeves and protection suits</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Crates and travel kennels</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 10 Puppy Selection -->
+      <article class="svc-card reveal delay-1">
+        <div class="svc-img">
+          <img src="images/svc-puppies.jpg" alt="Expert puppy selection for working dog programmes" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Puppy Selection</span></div>
+          <span class="svc-num-badge" aria-hidden="true">10</span>
+        </div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">Expert Assessment</span>
+          <h2 class="svc-name">Puppy <span>Selection</span></h2>
+          <p class="svc-desc">Expert assistance sourcing and selecting the right puppy for your K9 programme. We assess litters for working drive, nerve strength and temperament — saving you the risk of investing in an unsuitable animal. Available in Belgian Malinois, German Shepherd, Labrador and Rottweiler.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Drive and temperament assessment</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Malinois · German Shepherd · Labrador · Rottweiler</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Health and pedigree verification</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Post-selection guidance and support</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+
+      <!-- 11 K9 Consultation -->
+      <article class="svc-card reveal delay-2">
+        <div class="svc-img">
+          <img src="images/svc-consultation.jpg" alt="K9 and kennel consultation services" class="site-photo" loading="lazy" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+          <div class="svc-img-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>K9 Consultation</span></div>
+          <span class="svc-num-badge" aria-hidden="true">11</span>
+        </div>
+        <div class="svc-body">
+          <span class="badge badge-red" style="margin-bottom:12px;">Advisory Service</span>
+          <h2 class="svc-name">Kennel / <span>K9 Consultation</span></h2>
+          <p class="svc-desc">Expert advisory for organisations building or improving their canine security capability. We assess your current K9 programme, recommend the right breeds and handler ratios, advise on kennel infrastructure, training standards and operational procedures.</p>
+          <div class="svc-features">
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Full K9 programme assessment</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Breed and handler ratio recommendations</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Kennel infrastructure planning</div>
+            <div class="svc-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Ongoing advisory and compliance support</div>
+          </div>
+          <a href="contact.html" class="svc-cta">Enquire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </article>
+
+    </div>
   </div>
 </section>
 
