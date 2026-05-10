@@ -128,24 +128,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── Contact form handler ────────────────── */
+  /* ── Contact form handler (Web3Forms) ───── */
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', e => {
+    contactForm.addEventListener('submit', async e => {
       e.preventDefault();
       const btn = contactForm.querySelector('button[type="submit"]');
       const original = btn.innerHTML;
+
+      const nameField  = contactForm.querySelector('[name="name"]');
+      const emailField = contactForm.querySelector('[name="email"]');
+      let valid = true;
+      [nameField, emailField].forEach(f => {
+        if (!f.value.trim()) { f.style.borderColor = 'var(--red)'; valid = false; }
+        else f.style.borderColor = '';
+      });
+      if (!valid) return;
+
       btn.disabled = true;
-      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Message Sent`;
-      btn.style.background = '#166534';
-      btn.style.borderColor = '#166534';
-      setTimeout(() => {
-        contactForm.reset();
-        btn.disabled = false;
-        btn.innerHTML = original;
-        btn.style.background = '';
-        btn.style.borderColor = '';
-      }, 3500);
+      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation:spin 0.8s linear infinite" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…`;
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(contactForm)
+        });
+        const json = await res.json();
+
+        if (json.success) {
+          btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Enquiry Sent!`;
+          btn.style.cssText = 'background:#166534;border-color:#166534;cursor:default;';
+          contactForm.reset();
+          setTimeout(() => { btn.disabled = false; btn.innerHTML = original; btn.style.cssText = ''; }, 5000);
+        } else {
+          throw new Error(json.message || 'Submission failed');
+        }
+      } catch {
+        btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Failed — try WhatsApp`;
+        btn.style.cssText = 'background:#7f1d1d;border-color:#7f1d1d;';
+        setTimeout(() => { btn.disabled = false; btn.innerHTML = original; btn.style.cssText = ''; }, 4000);
+      }
     });
   }
 
