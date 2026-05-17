@@ -1039,3 +1039,44 @@ details[open] .faq-icon svg { stroke: #fff; transform: rotate(45deg); }
 @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } #faq { padding: 64px 0; } }
 @media (max-width: 480px) { #faq { padding: 48px 0; } .faq-question { padding: 16px 18px; } .faq-answer { padding: 12px 18px 16px; } }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── PARALLAX BAND ────────────────────────────── */
+.parallax-band {
+  background-image: url('../images/action-malinois-handler.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  background-attachment: fixed;
+  min-height: 460px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.parallax-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10,10,10,0.9) 0%, rgba(204,0,0,0.2) 100%);
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.parallax-content {
+  max-width: 600px;
+  padding: 5rem 0;
+}
+.parallax-content .section-label { color: rgba(255,255,255,0.6); }
+.parallax-content h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  margin: 12px 0 16px;
+  line-height: 1.1;
+}
+.parallax-content p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; }
+.parallax-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+@media (max-width: 768px) {
+  .parallax-band { background-attachment: scroll; min-height: 380px; }
+  .parallax-content { padding: 4rem 0; }
+}
