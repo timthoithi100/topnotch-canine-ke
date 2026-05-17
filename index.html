@@ -240,7 +240,11 @@
     }
 
     /* Services section */
-    #services { padding: 96px 0; background: var(--bg); }
+    #services { padding: 96px 0; background: #F2F2F2; }
+    #services .section-title { color: #0A0A0A; }
+    #services .section-title span { color: var(--red); }
+    #services .section-desc { color: #555; }
+    #services .section-label { color: var(--red); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
     .services-secondary {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
@@ -356,7 +360,9 @@
     }
 
     /* Testimonials */
-    #testimonials { padding: 96px 0; background: var(--bg-alt); }
+    #testimonials { padding: 96px 0; background: #F2F2F2; }
+    #testimonials .section-title { color: #0A0A0A; }
+    #testimonials .section-title span { color: var(--red); }
     .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .testi-card {
       background: var(--bg-card);
@@ -830,10 +836,11 @@
 <!-- ═══ WHY WORK WITH US ═══════════════════ -->
 <section id="why-us" aria-label="Why work with Top Notch Canine">
   <style>
-    #why-us { padding: 96px 0; }
+    #why-us { padding: 96px 0; background: #F2F2F2; }
     .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .why-text h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin: 8px 0 20px; }
-    .why-text p { color: var(--white-70); line-height: 1.8; margin-bottom: 24px; }
+    .why-text h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin: 8px 0 20px; color: #0A0A0A; }
+    .why-text h2 span { color: var(--red); }
+    .why-text p:not(.section-label) { color: #555; line-height: 1.8; margin-bottom: 24px; }
     .why-caps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .why-cap { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--white-10); border-radius: 6px; font-size: 0.82rem; color: var(--white-70); }
     .why-cap svg { flex-shrink: 0; width: 14px; height: 14px; stroke: var(--red); }
