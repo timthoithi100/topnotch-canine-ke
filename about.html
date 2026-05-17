@@ -78,11 +78,12 @@
     .cert-full { font-size: 0.8rem; color: var(--white-40); margin-bottom: 8px; }
     .cert-note { font-size: 0.78rem; color: var(--white-40); line-height: 1.6; }
 
-    .values-section { padding: 80px 0; background: var(--bg); }
+    .values-section { padding: 80px 0; background: #F2F2F2; }
+    .values-section .section-title { color: #0A0A0A; }
     .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
     .value-item { text-align: center; padding: 32px 20px; }
     .value-num { font-family: var(--font-heading); font-size: 3rem; font-weight: 700; color: var(--red); line-height: 1; margin-bottom: 8px; }
-    .value-label { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-70); }
+    .value-label { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #555; }
 
     @media (max-width: 1024px) {
       .about-full-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -231,9 +232,10 @@
 <!-- WHO WE ARE -->
 <section class="who-section" aria-label="Who we are">
   <style>
-    .who-section { padding: 80px 0; }
+    .who-section { padding: 80px 0; background: #F2F2F2; }
     .who-inner { max-width: 860px; margin: 0 auto; text-align: center; }
-    .who-inner p { color: var(--white-70); line-height: 1.9; font-size: 1.05rem; margin-bottom: 20px; }
+    .who-inner .section-title { color: #0A0A0A; }
+    .who-inner p:not(.section-label) { color: #555; line-height: 1.9; font-size: 1.05rem; margin-bottom: 20px; }
     .who-inner p:last-child { margin-bottom: 0; }
   </style>
   <div class="container">

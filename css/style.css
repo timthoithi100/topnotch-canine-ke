@@ -980,8 +980,11 @@ p { color: var(--white-70); line-height: 1.75; }
 ═══════════════════════════════════════════════ */
 #faq {
   padding: 96px 0;
-  background: var(--bg);
+  background: #F2F2F2;
 }
+#faq .section-title { color: #0A0A0A; }
+#faq .section-title span { color: var(--red); }
+#faq .section-desc { color: #555; }
 .faq-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
