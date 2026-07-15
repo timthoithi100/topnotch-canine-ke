@@ -16,9 +16,11 @@
     .about-full-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
     .bio-img {
       position: sticky; top: calc(var(--nav-h) + 24px);
+      max-width: 340px;
+      overflow: visible;
     }
     .bio-img-frame {
-      aspect-ratio: 3/4; background: var(--bg-card);
+      aspect-ratio: 4/5; background: var(--bg-card);
       border: 1px solid var(--white-10); border-radius: var(--radius-md);
       overflow: hidden; position: relative;
     }
@@ -35,6 +37,15 @@
     }
     .bio-img-placeholder svg { width: 80px; height: 80px; stroke: var(--white-10); }
     .bio-img-placeholder span { font-family: var(--font-heading); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-40); }
+    .bio-badge-card {
+      position: absolute; bottom: 24px; right: -28px; z-index: 4;
+      background: var(--red);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      border: 3px solid var(--bg);
+    }
+    .bio-badge-card .num { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 700; color: var(--white); line-height: 1; }
+    .bio-badge-card .lbl { font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-top: 4px; }
     .bio-name-card {
       background: var(--bg-card); border: 1px solid var(--white-10);
       border-radius: var(--radius-md); padding: 20px; margin-top: 16px;
@@ -87,7 +98,7 @@
 
     @media (max-width: 1024px) {
       .about-full-grid { grid-template-columns: 1fr; gap: 40px; }
-      .bio-img { position: static; max-width: 380px; }
+      .bio-img { position: static; max-width: 380px; overflow: visible; }
       .about-full { padding: 64px 0; }
       .certs-section { padding: 56px 0; }
       .values-section { padding: 56px 0; }
@@ -98,12 +109,15 @@
       .bio-img { max-width: 100%; }
       .exp-timeline { margin: 24px 0; }
       .bio-content h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+      .bio-badge-card { bottom: -16px; right: -8px; padding: 14px 18px; }
+      .bio-badge-card .num { font-size: 2rem; }
     }
     @media (max-width: 640px) {
       .about-full { padding: 48px 0; }
       .certs-grid { grid-template-columns: 1fr; }
       .bio-img-frame { aspect-ratio: 4/3; }
       .bio-name-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .bio-badge-card { bottom: 12px; right: 12px; position: relative; margin-top: 12px; display: inline-block; }
     }
     @media (max-width: 480px) {
       .values-grid { grid-template-columns: 1fr 1fr; }
@@ -172,6 +186,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="0.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             <span>Photo — Bonifance Mokua</span>
           </div>
+        </div>
+        <div class="bio-badge-card" aria-label="8 years of experience">
+          <div class="num">8+</div>
+          <div class="lbl">Years<br>Experience</div>
         </div>
         <div class="bio-name-card">
           <div>
