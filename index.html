@@ -275,9 +275,10 @@
     .about-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
     .about-img-wrap {
       position: relative;
+      max-width: 340px;
     }
     .about-img-box {
-      aspect-ratio: 3/4;
+      aspect-ratio: 4/5;
       background: var(--bg-card);
       border: 1px solid var(--white-10);
       border-radius: var(--radius-md);
@@ -495,7 +496,7 @@
       .services-grid { grid-template-columns: 1fr 1fr; }
       .services-secondary { grid-template-columns: 1fr 1fr; }
       .about-grid { grid-template-columns: 1fr; gap: 56px; }
-      .about-img-wrap { max-width: 380px; }
+      .about-img-wrap { max-width: 320px; }
       .breeds-grid { grid-template-columns: 1fr 1fr; }
       .testi-grid { grid-template-columns: 1fr 1fr; }
       #services { padding: 64px 0; }
@@ -895,7 +896,7 @@
 
 
 <!-- ═══ PARALLAX BAND ══════════════════════════ -->
-<div class="parallax-band" aria-hidden="true">
+<div class="parallax-band" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1688885768078-6825c2236c22?q=80&amp;w=1074&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center;">
   <div class="parallax-overlay">
     <div class="container">
       <div class="parallax-content reveal">
@@ -923,8 +924,7 @@
     <div class="breeds-grid">
       <article class="breed-card reveal delay-1" aria-labelledby="breed-mali">
         <div class="breed-img" role="img" aria-label="Belgian Malinois working dog">
-          
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <img src="https://images.unsplash.com/photo-1599826023510-a98d08764aec?q=80&amp;w=1170&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Belgian Malinois working dog" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
           <span class="breed-img-label">Most Deployed</span>
         </div>
         <div class="breed-body">
@@ -940,8 +940,7 @@
 
       <article class="breed-card reveal delay-2" aria-labelledby="breed-lab">
         <div class="breed-img" role="img" aria-label="Labrador Retriever working dog">
-          
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <img src="https://images.unsplash.com/photo-1554456854-55a089fd4cb2?q=80&amp;w=1170&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Labrador Retriever working dog" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
           <span class="breed-img-label">Detection Expert</span>
         </div>
         <div class="breed-body">
@@ -956,8 +955,7 @@
 
       <article class="breed-card reveal delay-3" aria-labelledby="breed-rott">
         <div class="breed-img" role="img" aria-label="Rottweiler working dog">
-          
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="0.5" stroke-linecap="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="9" ry="6"/><ellipse cx="18" cy="10" rx="5" ry="4"/><rect x="19" y="10" width="4" height="2.5" rx="1.5"/><polygon points="15,6 19,6 17,2"/></svg>
+          <img src="https://images.unsplash.com/photo-1665333354010-050f08f35907?q=80&amp;w=1170&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Rottweiler working dog" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
           <span class="breed-img-label">Guard Specialist</span>
         </div>
         <div class="breed-body">
@@ -999,16 +997,16 @@
     </div>
     <div class="daw-mosaic">
       <div class="daw-photo reveal delay-1">
-        <img src="images/action-malinois-handler.jpg" alt="K9 detection dog on active deployment" loading="lazy" style="object-position: center 60%;">
+        <img src="https://imgs.search.brave.com/JqlGmXWMYKB816KKpfMmeXeTBKBvBKUu5_UhRikXRJY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTI2/NTA0NTc1Ny9waG90/by9kcnVnLWRldGVj/dGlvbi1kb2ctc25p/ZmZpbmctY2FyLWF0/LWFpcnBvcnQuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPWZ1/bnFvenU2ZkZBUEdF/Q1E5NkdaNU4tZ0RL/UDdhZnVEZmgtT1k2/b0JzWTA9" alt="K9 detection dog on active deployment" loading="lazy" style="object-position: center 60%;">
       </div>
       <div class="daw-photo reveal delay-2">
-        <img src="images/action-detection-vest.jpg" alt="Detection dog conducting aircraft cabin screening" loading="lazy">
+        <img src="https://imgs.search.brave.com/N5r1H-KOP3F35DhfexbLvTS39kRiIbgL5Jt68BjMiqw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjE3/MDg4MDIxNC9waG90/by9yZXZlbnVlLWN1/c3RvbXMtZGV0ZWN0/aW9uLWRvZy1qYWNr/LWR1cmluZy1hbi11/cGRhdGUtdG8tbWVk/aWEtYnktYW4tZ2Fy/ZGEtc2lvY2hhbmEt/YW5kLmpwZz9zPTYx/Mng2MTImdz0wJms9/MjAmYz1yUFNqaFF1/QnpwZ1FxNEM1NGJp/MlN2ZG9JcnFDWGww/bnpMV2ZhYng4Mnkw/PQ" alt="Detection dog conducting aircraft cabin screening" loading="lazy">
       </div>
       <div class="daw-photo reveal delay-3">
-        <img src="images/action-springer-luggage.jpg" alt="Black Labrador with detection vest searching luggage" loading="lazy">
+        <img src="https://imgs.search.brave.com/_6jq1hVu8fXlaXowGr-Xpfk9aRVAvOS5oCcoXZr9tK4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTMy/NTk0MDYwMi9waG90/by9zZWN1cml0eS13/b3JrZXItd2l0aC1w/b2xpY2UtZG9nLWNo/ZWNraW5nLWx1Z2dh/Z2UtYXQtYWlycG9y/dC5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Y0MtcEJRUjQ2/RW5GeVQ4X3lRNU1k/WnBMemNvN3FmalBG/SUNZcjduWUZMZz0" alt="Security handler with police dog checking luggage" loading="lazy">
       </div>
       <div class="daw-photo reveal delay-1">
-        <img src="images/action-dog-aircraft.jpg" alt="Springer Spaniel detection dog at luggage point" loading="lazy">
+        <img src="https://imgs.search.brave.com/xUfpzN8RBL-Jz9DvvJBo6lI6FRNUIJx2xgT9IZnKWZw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTU3/NDgxODYxL3Bob3Rv/L3NuaWZmZXItZG9n/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1vTWZGRU5RTFZv/QzJOcUtmNVp2dElE/Tkt6TGVkTmV6SnA1/dC1FUzk0WTE0PQ" alt="Sniffer dog on deployment" loading="lazy">
       </div>
     </div>
     <div class="daw-caption reveal">
